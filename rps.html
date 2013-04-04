@@ -1,0 +1,113 @@
+<!doctype html>
+<html ng-app="app">
+<head>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-39869790-1', 'github.com');
+    ga('send', 'pageview');
+  
+  </script>  
+  
+</head>
+
+  <header>
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.1/angular.js"></script>
+    <script language="javascript" type="text/javascript">
+      angular.module('app', []);
+      
+      //Whatever you put on the controller scope,
+      //will be availalble in the HTML element bound to the controller.
+      function MyController($scope){
+        $scope.newMessage = "rock";
+        $scope.messages = ["Rock wins", "Paper wins"]; 
+        
+        $scope.rps = function(){
+          var userChoice = $scope.newMessage;
+          //prompt("Do you choose rock, paper or scissors?");
+
+          var computerChoice = Math.random();
+          
+          if (computerChoice < 0.34)
+          computerChoice = "rock";
+          else if (computerChoice < 0.67)
+          computerChoice = "paper";
+          else
+          computerChoice = "scissors";
+          
+          console.log(computerChoice);
+          
+          var msg = "";
+          
+          if (computerChoice === userChoice){
+            msg = "its a tie!";
+          } else if (userChoice != "rock" && userChoice != "paper" && 
+            userChoice != "scissors"){
+              msg = "invalid move!";
+          }
+          
+          else if (computerChoice === "rock"){
+            if (userChoice === "paper"){
+              msg = "paper wins";
+          	}else {
+          		msg = "rock wins";
+          	}
+          }
+          
+          else if (computerChoice === "paper"){
+          	if (userChoice === "rock"){
+          		msg = "paper wins";
+          	}else {
+          		msg = "scissors wins";
+          	}
+          }
+          
+          else if (computerChoice === "scissors"){
+          	if (userChoice === "paper"){
+          		msg = "scissors wins";
+          	}else {
+          		msg = "rock wins";
+          	}
+          } 
+          
+          $scope.newMessage = msg;
+          
+          //$scope.add = function(){
+            $scope.messages.push($scope.newMessage);
+          //};
+        };
+        
+
+      }
+    </script>
+  </header>
+  
+  <body ng-controller = "MyController">
+  <font size='20px'>Do something!</font><br>
+    
+    Enter your Move:
+    <input type="text" ng-model="newMessage">
+    <input type="submit" ng-click="rps()" value="new move">
+    <br>    
+    Wins: <br>
+    <ul>
+      <li ng-repeat="message in messages">
+        {{message}}
+      </li>
+    </ul>
+  
+    <form action = "./thankyou_play.html">
+    <input type="submit" value="End Game">
+    </form>
+    
+    <a href="./index.html">Home</a><br>
+    <a href="./signup.html">Sign Up</a><br>
+    <a href="./share.html">Share</a> this page<br>
+    
+  </body>
+  
+</html>
