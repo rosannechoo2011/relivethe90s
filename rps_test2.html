@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-39869790-1', 'github.com');
+    ga('send', 'pageview');
+  
+  </script>  
+
+<title>ACE in Action</title>
+ 
+<style type='text/css'>
+  /* MUST HAVE WIDTH/HEIGHT */
+  .ace-editor {
+    width:100%;
+    height:200px;
+  }
+
+  #contents {
+    width:50%;
+    height:50%;
+    position:absolute;
+    top:0;
+  }
+</style>
+<script src="angular.min.js"></script>
+<script src="angular-resource.min.js"></script>
+<script src="jquery.min.js"></script>
+<script src="angular-ace.js"></script>
+<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+
+
+<script language="javascript" type="text/javascript">
+    angular.module('myApp', ['ngResource','ace']);
+
+    function FirstController($scope, $resource){ 
+        $scope.supported_langugages = [
+          {language : 'java', urlName : 'java' },
+          {language : 'js', urlName : 'js' },
+        ];
+
+        $scope.language = 'java';
+
+                //Some example code for each language.
+        $scope.d = {"scipy":{"solution":"import scipy.interpolate\nx = numpy.arange(10,dtype='float32') * 0.3\ny = numpy.cos(x)\nrep = scipy.interpolate.splrep(x,y)\nsol =  scipy.interpolate.splev(0.5,rep)",
+                             "tests":">>> assert_almost_equal(sol, 0.87752449938946964)\nTrue"},
+                    "oc":{"solution":"int b=2;\nfloat f = 123.45;\ndouble inches = 3*2;\nNSString *string1 = @\"This string is immutable\";",
+                          "tests":"AssertEquals(2, b);\nint expected_b = 2;\nAssertEquals(expected_b, b);\nAssertEquals((float)123.45, f);\nAssertEquals([NSString stringWithString:@\"This string is immutable\"], string1);"},
+                    "c":{ "solution":"int sum(int a, int b){return a+b;}\nchar *message = \"Hello world!!!\";\nconst char *testStrings[] = { \"foo\", \"boo\", \"woo\", \"zoo\" };",
+                          "tests" :  "void test_sum(void){TEST_ASSERT(5==sum(2,3));}\nvoid test_hello_world(void){TEST_ASSERT_EQUAL_STRING(message, \"Hello world!!!\");}\nvoid testNotEqualStringArray1(void){ const char *expStrings[] = { \"foo\", \"boo\", \"woo\", \"zoo\" };\nTEST_ASSERT_EQUAL_STRING_ARRAY(expStrings, testStrings, 4);}" },      
+                     "r":{"solution":"factorial <- function(n){\n if (n == 0) {return(1)}\n else {  return(n * factorial(n - 1)) }\n}",
+                          "tests":">>> checkEquals(6, factorial(3))\nTrue"},
+                     "python":{"solution":"number = 2\nwizard = 'Oz'\n\ndef mapper(shard):\n  return {'hi': [1,1,1,1]}\n\ndef reducer(map):\n  return {'hi':4}\n\ndef play_game(x):\n  return 'X--O----'",
+                          "tests":">>> number\n 2\n>>> wizard\n 'Oz'\n>>> play_game('X---O----')\n  'XX--O----'\n>>> mapper('hi hi hi hi')\n  {'hi': [1, 1, 1, 1]}\n>>> reducer({'hi': [1,1,1,1]})\n {'hi':4}"},
+                     
+                     "oldjsp":{"solution":"<%@ page import=\"java.util.*, java.text.*\" %><HTML><HEAD><TITLE>Hello Pineapples</TITLE></HEAD>\n<BODY><H1>Hello World</H1>\n<TABLE><TR><TD><P>This is an <B>embedded</B> table</P></TD></TR>\n<TR><TD>    The request parameter 'fruit' has a value of <%= request.getParameter(\"fruit\") %>\n</TD></TR></TABLE>\nToday is: <%= new SimpleDateFormat(\"dd/MM/yyyy\").format(new Date()) %>\n </BODY></HTML>",
+                          "tests":"String expectedDate = new SimpleDateFormat(\"dd/MM/yyyy\").format(new Date());\npage().shouldHaveTitle(\"Hello Pineapples\");\npage().shouldContain(\"Today is: \"+expectedDate);\nonRequest(\"fruit\", \"guava\").page().shouldContain(\"The request parameter 'fruit' has a value of guava\");\npage().shouldContainElement(\"//TABLE/TR/TD/P/B\");\nelement(\"//TABLE/TR/TD/P/B\").shouldContain(\"embedded\");"},
+                     "ruby":{"solution":"a = 1\nb = 2",
+                          "tests":"assert_equal(1,a)\nassert_equal(2,b)",
+                          "hosts":["parserplayground-staging.appspot.com/ruby?id=1","parserplayground-staging.appspot.com/ruby?id=2"]
+                          },
+                     "js":{"solution":"a=1;\nb=7;",
+                          "tests":"assert_equal(1,a);\nassert_equal(2,b);"},
+                    
+                    "java":{"solution":"String userChoice = \"rock\";",
+                            "tests":"String computerChoice = \"\"; double computer = Math.random(); if (computer < 0.34) {computerChoice = \"rock\";} else if (computer < 0.67){computerChoice = \"paper\";} else {computerChoice = \"scissors\";} if (computerChoice == userChoice){assertNotSame(\"its a tie!\", computerChoice, userChoice);} else if (userChoice != \"rock\" && userChoice != \"paper\" && userChoice != \"scissors\"){fail(\"invalid move!\");} else if (computerChoice == \"rock\"){if (userChoice == \"rock\"){assertEquals (\"paper wins\", computerChoice, userChoice);}else {assertEquals (\"rock wins\", computerChoice, userChoice);}}else if (computerChoice == \"paper\"){if (userChoice == \"rock\"){assertEquals( \"paper wins\", computerChoice, userChoice);}else {assertEquals( \"scissors wins\", computerChoice, userChoice);}}else if (computerChoice == \"scissors\"){if (userChoice == \"paper\"){assertEquals( \"scissors wins\", computerChoice, userChoice);}else {assertEquals( \"rock wins\", computerChoice, userChoice);}}",
+                    }
+            },
+
+
+        $scope.status = "Ready"
+        //Load some good code
+        $scope.load_example_code = function(){
+          $scope.solution = $scope.d[$scope.language]["solution"];
+          $scope.tests = $scope.d[$scope.language]["tests"];
+        };
+
+
+        // For the loadbalancer version with fewer options. 
+        $scope.VerifierModel = $resource('http://ec2-54-251-193-188.ap-southeast-1.compute.amazonaws.com/:language',
+                                {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
+                                   }
+                            );
+        /*
+        $scope.VerifierModel = $resource('http://54.251.51.97/:language',
+                                {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
+                                   }
+                            );
+        */
+        $scope.verify = function(){
+          data = {solution: $scope.solution, tests: $scope.tests}
+          //jsonrequest = JSON.stringify(data) 
+          jsonrequest = btoa(JSON.stringify(data));
+
+          $scope.status = "Verifying"
+          //$scope.solution = "y=5"
+          $scope.VerifierModel.get({'language':$scope.language,
+                                    'jsonrequest':jsonrequest},
+                function(response) { 
+                  $scope.result = response;
+                  $scope.status = "Ready"
+                });  
+        };
+
+      }
+</script>
+
+</head>
+
+<body ng-controller="FirstController">
+<select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
+<br>
+<input type="submit" value="verify {{language}} code" ng-click="verify()">
+<br>
+
+
+Status: {{status}}
+Result: <pre>{{result}}</pre><br>
+Is Solved: <b>{{result.solved}}</b><br>
+<table border=1 bgcolor=#FFFFFF>
+    <tr>   
+        <th>Result</th>
+        <th>Computer</th>
+        <th>Player</th>
+        <th>Correct</th>    
+    </tr>
+    <tr ng-repeat="line in result.results">
+        <td>{{line.message}}</td>
+        <td>{{line.expected}}</td>
+        <td>{{line.received}}</td>
+        <td ng-show="line.correct" bgcolor=#00FF00>{{line.correct}}</td>
+        <td ng-show="!line.correct" bgcolor=#FF0000>{{line.correct}}</td>      
+    </tr>
+</table>
+
+
+Player Solution:
+<div>
+    <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
+</div>
+Tests:
+<div >
+    <textarea ng-model="tests" name="tests" rows="8" cols="50"></textarea>
+</div>
+
+<span ng-init="load_example_code()"></span>
+</body>
+</html>
