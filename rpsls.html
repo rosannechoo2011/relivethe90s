@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+  <head>
+  
+    <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-39869790-1', 'github.com');
+    ga('send', 'pageview');
+  
+  </script> 
+  
+    <title>RPSLS: Game On!</title>
+    
+		<style type='text/css'>
+			/* MUST HAVE WIDTH/HEIGHT */
+			.ace-editor {
+			width:100%;
+			height:200px;
+			}
+			#contents {
+			width:50%;
+			height:50%;
+			position:absolute;
+			top:0;
+			}
+		</style>
+		<script src="angular.min.js"></script>
+		<script src="angular-resource.min.js"></script>
+		<script src="jquery.min.js"></script>
+		<script src="angular-ace.js"></script>
+		<script src="ace.js" type="text/javascript" charset="utf-8"></script>
+		<script language="javascript" type="text/javascript">
+			angular.module('myApp', ['ngResource','ace']);
+			
+			function FirstController($scope, $resource){ 
+			    $scope.supported_langugages = [
+			      {language : 'java', urlName : 'java' },
+			      {language : 'js', urlName : 'js' },
+			    ];
+			
+			    $scope.language = 'java';
+			
+			            //Some example code for each language.
+			    $scope.d = {
+			                 "js":{"solution":"a=1;\nb=7;",
+			                      "tests":"assert_equal(1,a);\nassert_equal(2,b);"},
+			                
+			                "java":{"solution":"public String nextMove(){\n\treturn \"paper\";\n}",
+			                        "tests":"String computerChoice = \"\"; double computer = Math.random(); if (computer < 0.2) {computerChoice = \"rock\";} else if (computer < 0.4){computerChoice = \"paper\";} else if (computer < 0.6) {computerChoice = \"scissors\";} else if (computer < 0.8){computerChoice=\"lizard\";} else {computerChoice=\"spock\";} String userChoice = nextMove(); assertEquals(computerChoice, userChoice); ",
+			                }
+			        },
+			
+			
+			    $scope.status = "Ready"
+			    //Load some good code
+			    $scope.load_example_code = function(){
+			      $scope.solution = $scope.d[$scope.language]["solution"];
+			      $scope.tests = $scope.d[$scope.language]["tests"];
+			    };
+			
+			
+			    // For the loadbalancer version with fewer options. 
+			    $scope.VerifierModel = $resource('http://ec2-54-251-193-188.ap-southeast-1.compute.amazonaws.com/:language',
+			                            {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
+			                               }
+			                        );
+			
+			    $scope.verify = function(){
+			      data = {solution: $scope.solution, tests: $scope.tests}
+			      jsonrequest = btoa(JSON.stringify(data));
+			
+			      $scope.status = "Verifying"
+			      $scope.VerifierModel.get({'language':$scope.language,
+			                                'jsonrequest':jsonrequest},
+			          
+			         
+			            function(response) { 
+			              $scope.result = response;
+			              var arr = response["results"];
+			              var tie = response.solved;
+			              var computerChoice ="";
+			              var userChoice ="";
+			              computerChoice = arr[0].expected;
+  		                userChoice = arr[0].received;
+
+			              $scope.status = "Ready";
+			              getWinner(tie, computerChoice, userChoice);
+
+			            });
+			
+			            
+			            function getWinner(tie, computerChoice, userChoice){
+			              
+                    if (!tie){
+                      alert(computerChoice);
+                      alert(userChoice);
+			                $scope.computerMove = computerChoice.toString().trim().replace("[","").replace("]","");
+			                $scope.userMove = userChoice.toString().trim().replace("[","").replace("]","");
+                    }
+			              var msg = "";
+			      
+			      // Rock, Paper, Scissors, Lizard, Spock
+// uses associative arrays, functions, .toLowerCase(), .length, 
+// do-while, for, prompt, alert,console.log
+var choices = ["rock","paper","scissors","lizard","spock"]; // you could comment out the last two for the standard game.
+var userWins = 0;
+var computerWins = 0;
+var results = {
+"scissorspaper" : "cuts",//Scissors cuts paper
+"paperrock" : "covers", //Paper covers rock
+"rocklizard" : "crushes", //Rock crushes lizard
+"lizardspock" : "poisons", //Lizard poisons Spock
+"spockscissors" : "smashes", //Spock smashes scissors
+"scissorslizard" : "decapitates",//Scissors decapitates lizard
+"lizardpaper" : "eats",//Lizard eats paper
+"paperspock" : "disproves", //Paper disproves Spock
+"spockrock" : "vaporizes", //Spock vaporizes rock
+"rockscissors" : "crushes" //Rock crushes scissors
+};
+// compare makes a key of the two choices and determines the winner
+var computer =  computerChoice.toString().trim().replace("[","").replace("]","");
+var user = userChoice.toString().trim().replace("[","").replace("]",""); 
+alert(computer);
+alert(user);
+var compare = function(user,computer){
+if (user === computer){
+msg = "The result is a tie!";
+}
+if (results[user+""+computer] !== undefined){ // user beats computer
+userWins++;
+msg = user+" "+results[user+""+computer]+" "+computer;
+} else { //computer beats user
+computerWins++;
+msg = computer+" "+results[computer+""+user]+" "+user;
+}
+}
+//loop until the user enters something invalid
+            compare(user, computer);
+			      $scope.winner = msg;
+			            }
+			            
+			    };
+
+			  }
+		</script>
+	</head>
+	<body ng-controller="FirstController">
+		<select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
+		<br>
+		<input type="submit" value="verify {{language}} code" ng-click="verify()">
+		<br>
+		Status: {{status}}<br>
+		Result: 
+		<pre>{{result}}</pre>
+		<br>
+		WINNER: {{winner}}</br>
+		Is Tie: <b>{{result.solved}}</b><br>
+		<table border=1 bgcolor=#FFFFFF>
+			<tr >
+				<th>Computer</th>
+				<th>Player</th>
+			</tr>
+			<tr>
+				<td>{{computerMove}}</td>
+				<td>{{userMove}}</td>
+			</tr>
+		</table>
+		Player Solution:
+		<div>
+			<textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
+		</div>
+		Tests:
+		<div >
+			<textarea ng-model="tests" name="tests" rows="8" cols="50"></textarea>
+		</div>
+		<span ng-init="load_example_code()"></span>
+	</body>
+</html>
