@@ -1,16 +1,15 @@
-<html>
+<html xmlns:fb="http://ogp.me/ns/fb#">
    <head>
-    
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-    
-      ga('create', 'UA-39869790-1', 'github.com');
-      ga('send', 'pageview');
-    
-    </script>
+      <script>
+         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+         
+         ga('create', 'UA-39869790-1', 'github.com');
+         ga('send', 'pageview');
+         
+      </script>
       <style type="text/css">
          <!-- 
             html { 
@@ -43,6 +42,61 @@
       </style>
    </head>
    <body>
+      <div>
+    <button id="login">Login</button>
+    <button id="disconnect">Disconnect</button>
+  </div>
+  <div id="user-info" style="display: none;"></div>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
+
+  <div id="fb-root"></div>
+  <script src="http://connect.facebook.net/en_US/all.js"></script>
+  <script>
+    // initialize the library with the API key
+    FB.init({ appId  : '136675969847991' });
+
+    // fetch the status on load
+    FB.getLoginStatus(handleSessionResponse);
+
+    $('#login').bind('click', function() {
+      FB.login(handleSessionResponse);
+    });
+
+    $('#disconnect').bind('click', function() {
+      FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
+        clearDisplay();
+      });
+    });
+
+    // no user, clear display
+    function clearDisplay() {
+      $('#user-info').hide('fast');
+    }
+
+    // handle a session response from any of the auth related calls
+    function handleSessionResponse(response) {
+      // if we dont have a session, just hide the user info
+      if (!response.session) {
+        clearDisplay();
+        return;
+      }
+
+      // if we have a session, query for the user's profile picture and name
+      FB.api(
+        {
+          method: 'fql.query',
+          query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
+        },
+        function(response) {
+          var user = response[0];
+          $('#user-info').html('<img src="' + user.pic + '">' + user.name).show('fast');
+        }
+      );
+    }
+  </script>
+      
+      
       <div id="div-1">
          <img src="https://dl.dropbox.com/u/40315869/cloud_images/relivelogo.png" width="550px" height="200px"/>
       </div>
@@ -58,6 +112,7 @@
       </div>
       Welcome to our site: Back to the 90s!
       <p></p>
+      <a href="#" onclick = "https://www.facebook.com/dialog/oauth?client_id=136675969847991&redirect_uri=rosannechoo2011.github.com/relivethe90s/index.html&scope=user_games_activity,publish_actions,email&response_type=token">Login with FB</a><br>
       Play <a href="./rps.html">Rock, Paper, Scissors</a>!<br>
       Play <a href="./rpsls.html">Rock, Paper, Scissors, Lizard, Spock</a>!<br>
       Play <a href="./rpslssbwg.html">Rock, Paper, Scissors, Lizard, Spock, Spiderman, Batman, Wizard, Glock</a>!<br>
