@@ -1,15 +1,19 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
    <head>
-      <script>
-         (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-         })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-         
-         ga('create', 'UA-39869790-1', 'github.com');
-         ga('send', 'pageview');
-         
-      </script>
+   
+  
+    
+    
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-39869790-1', 'github.com');
+      ga('send', 'pageview');
+    
+    </script>
       <style type="text/css">
          <!-- 
             html { 
@@ -42,61 +46,65 @@
       </style>
    </head>
    <body>
-      <div>
-    <button id="login">Login</button>
-    <button id="disconnect">Disconnect</button>
-  </div>
-  <div id="user-info" style="display: none;"></div>
-
-  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.min.js"></script>
-
-  <div id="fb-root"></div>
-  <script src="http://connect.facebook.net/en_US/all.js"></script>
-  <script>
-    // initialize the library with the API key
-    FB.init({ appId  : '136675969847991' });
-
-    // fetch the status on load
-    FB.getLoginStatus(handleSessionResponse);
-
-    $('#login').bind('click', function() {
-      FB.login(handleSessionResponse);
-    });
-
-    $('#disconnect').bind('click', function() {
-      FB.api({ method: 'Auth.revokeAuthorization' }, function(response) {
-        clearDisplay();
-      });
-    });
-
-    // no user, clear display
-    function clearDisplay() {
-      $('#user-info').hide('fast');
+   <header>
+   <div id="fb-root"></div>
+      <script>
+        window.fbAsyncInit = function() {
+          FB.init({
+            appId      : '136675969847991', // App ID
+            channelUrl : './channel.html', // Channel File
+            status     : true, // check login status
+            cookie     : true, // enable cookies to allow the server to access the session
+            xfbml      : true  // parse XFBML
+          });
+          FB.api('/me', function(user) {
+            if (user) {
+              var image = document.getElementById('image');
+              image.src = 'https://graph.facebook.com/' + user.id + '/picture';
+              var name = document.getElementById('name');
+              name.innerHTML = user.name
+            }
+          });
+          
+         FB.getLoginStatus(function(response) {
+    if (response.status === 'connected') {
+        // connected
+    } else if (response.status === 'not_authorized') {
+        // not_authorized
+        login();
+    } else {
+        // not_logged_in
+        login();
     }
-
-    // handle a session response from any of the auth related calls
-    function handleSessionResponse(response) {
-      // if we dont have a session, just hide the user info
-      if (!response.session) {
-        clearDisplay();
-        return;
-      }
-
-      // if we have a session, query for the user's profile picture and name
-      FB.api(
-        {
-          method: 'fql.query',
-          query: 'SELECT name, pic FROM profile WHERE id=' + FB.getSession().uid
-        },
-        function(response) {
-          var user = response[0];
-          $('#user-info').html('<img src="' + user.pic + '">' + user.name).show('fast');
+});
+          
+        };
+        
+        function login() {
+    FB.login(function(response) {
+        if (response.authResponse) {
+            // connected
+            alert("connected");
+        } else {
+            // cancelled
+            alert("cancelled");
         }
-      );
-    }
-  </script>
-      
-      
+    });
+}
+        
+        // Load the SDK Asynchronously
+        (function(d, s, id){
+           var js, fjs = d.getElementsByTagName(s)[0];
+           if (d.getElementById(id)) {return;}
+           js = d.createElement(s); js.id = id;
+           js.src = "//connect.facebook.net/en_US/all.js";
+           fjs.parentNode.insertBefore(js, fjs);
+         }(document, 'script', 'facebook-jssdk'));
+      </script>
+      </header>
+   <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+   
+   
       <div id="div-1">
          <img src="https://dl.dropbox.com/u/40315869/cloud_images/relivelogo.png" width="550px" height="200px"/>
       </div>
