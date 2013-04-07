@@ -1,8 +1,5 @@
 <html xmlns:fb="http://ogp.me/ns/fb#">
    <head>
-   
-  
-    
     
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -46,65 +43,70 @@
       </style>
    </head>
    <body>
-   <header>
-   <div id="fb-root"></div>
-      <script>
-        window.fbAsyncInit = function() {
-          FB.init({
-            appId      : '136675969847991', // App ID
-            channelUrl : './channel.html', // Channel File
-            status     : true, // check login status
-            cookie     : true, // enable cookies to allow the server to access the session
-            xfbml      : true  // parse XFBML
-          });
-          FB.api('/me', function(user) {
-            if (user) {
-              var image = document.getElementById('image');
-              image.src = 'https://graph.facebook.com/' + user.id + '/picture';
-              var name = document.getElementById('name');
-              name.innerHTML = user.name
-            }
-          });
-          
-         FB.getLoginStatus(function(response) {
-    if (response.status === 'connected') {
-        // connected
-    } else if (response.status === 'not_authorized') {
-        // not_authorized
-        login();
-    } else {
-        // not_logged_in
-        login();
-    }
-});
-          
-        };
+<div id="fb-root"></div>
+
+<div id="user-info"></div>
+<p><button id="fb-auth">Login</button></p>
+
+<script>
+window.fbAsyncInit = function() {
+  FB.init({ appId: '136675969847991', 
+        status: true, 
+        cookie: true,
+        xfbml: true,
+        oauth: true});
+
+  function updateButton(response) {
+    var button = document.getElementById('fb-auth');
         
-        function login() {
-    FB.login(function(response) {
-        if (response.authResponse) {
-            // connected
-            alert("connected");
-        } else {
-            // cancelled
-            alert("cancelled");
-        }
+    if (response.authResponse) {
+      //user is already logged in and connected
+      var userInfo = document.getElementById('user-info');
+      FB.api('/me', function(response) {
+        userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
+      + response.id + '/picture">' + response.name;
+        button.innerHTML = 'Logout';
+      });
+      button.onclick = function() {
+        FB.logout(function(response) {
+          var userInfo = document.getElementById('user-info');
+          userInfo.innerHTML="";
     });
-}
-        
-        // Load the SDK Asynchronously
-        (function(d, s, id){
-           var js, fjs = d.getElementsByTagName(s)[0];
-           if (d.getElementById(id)) {return;}
-           js = d.createElement(s); js.id = id;
-           js.src = "//connect.facebook.net/en_US/all.js";
-           fjs.parentNode.insertBefore(js, fjs);
-         }(document, 'script', 'facebook-jssdk'));
-      </script>
-      </header>
-   <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
-   
-   
+      };
+    } else {
+      //user is not connected to your app or logged out
+      button.innerHTML = 'Login';
+      button.onclick = function() {
+        FB.login(function(response) {
+      if (response.authResponse) {
+            FB.api('/me', function(response) {
+          var userInfo = document.getElementById('user-info');
+          userInfo.innerHTML = 
+                '<img src="https://graph.facebook.com/' 
+            + response.id + '/picture" style="margin-right:5px"/>' 
+            + response.name;
+        });    
+          } else {
+            //user cancelled login or did not grant authorization
+          }
+        }, {scope:'email,publish_actions,user_games_activity,friends_games_activity'});    
+      }
+    }
+  }
+
+  // run once with current status and whenever the status changes
+  FB.getLoginStatus(updateButton);
+  FB.Event.subscribe('auth.statusChange', updateButton);    
+};
+    
+(function() {
+  var e = document.createElement('script'); e.async = true;
+  e.src = document.location.protocol 
+    + '//connect.facebook.net/en_US/all.js';
+  document.getElementById('fb-root').appendChild(e);
+}());
+
+</script>
       <div id="div-1">
          <img src="https://dl.dropbox.com/u/40315869/cloud_images/relivelogo.png" width="550px" height="200px"/>
       </div>
@@ -120,7 +122,7 @@
       </div>
       Welcome to our site: Back to the 90s!
       <p></p>
-      <a href="#" onclick = "https://www.facebook.com/dialog/oauth?client_id=136675969847991&redirect_uri=rosannechoo2011.github.com/relivethe90s/index.html&scope=user_games_activity,publish_actions,email&response_type=token">Login with FB</a><br>
+      <a href="#" onclick = "https://www.facebook.com/dialog/oauth?client_id=136675969847991&redirect_uri=apps.facebook.com/beattherpsbots&scope=user_games_activity,publish_actions,email&response_type=token">Login with FB</a><br>
       Play <a href="./rps.html">Rock, Paper, Scissors</a>!<br>
       Play <a href="./rpsls.html">Rock, Paper, Scissors, Lizard, Spock</a>!<br>
       Play <a href="./rpslssbwg.html">Rock, Paper, Scissors, Lizard, Spock, Spiderman, Batman, Wizard, Glock</a>!<br>
