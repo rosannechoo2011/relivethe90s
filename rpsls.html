@@ -41,7 +41,14 @@
 			      {language : 'java', urlName : 'java' },
 			      {language : 'js', urlName : 'js' },
 			    ];
-			
+			    
+          $scope.bots = [
+               {bot : 'dumb bot', urlName : 'dumb bot' },
+               {bot : 'smart bot', urlName : 'smart bot' },
+             ];
+         
+            $scope.bot = 'dumb bot';
+          
 			    $scope.language = 'java';
 			
 			            //Some example code for each language.
@@ -91,13 +98,17 @@
 			            function getWinner(userChoice){
                     
                     var computerChoice = ""; 
+                    
+                    if($scope.bot==="dumb bot"){
+                            computerChoice = "spock";
+                          }else {
                     var computer = Math.random(); 
                     if (computer < 0.2) {computerChoice = "rock";} 
                     else if (computer < 0.4){computerChoice = "paper";} 
                     else if (computer < 0.6) {computerChoice = "scissors";} 
                     else if (computer < 0.8){computerChoice="lizard";} 
                     else {computerChoice="spock";} 
-			              
+                    }
 			              var msg = "";
 			      
 			      // Rock, Paper, Scissors, Lizard, Spock
@@ -120,6 +131,8 @@ var results = {
 // compare makes a key of the two choices and determines the winner
 var computer = computerChoice;
 var user = userChoice.toString().trim().replace("[","").replace("]",""); 
+alert(computer);
+alert(user);
 var compare = function(user,computer){
 if (user === computer){
 msg = "The result is a tie!";
@@ -149,34 +162,36 @@ winner = "Try again, this bot is good (;";
 		</script>
 	</head>
 	<body ng-controller="FirstController">
-		<select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
-		<br>
-		<input type="submit" value="verify {{language}} code" ng-click="verify()">
-		<br>
-		Status: {{status}}<br>
-		Result: 
-		<pre>{{result}}</pre>
-		<br>
-		Winner: {{winner}}</br>
-    Outcome: {{outcome}}</br>
-		<table border=1 bgcolor=#FFFFFF>
-			<tr >
-				<th>Computer</th>
-				<th>Player</th>
-			</tr>
-			<tr>
-				<td>{{computerMove}}</td>
-				<td>{{userMove}}</td>
-			</tr>
-		</table>
-		Player Solution:
-		<div>
-			<textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
-		</div>
-		Tests:
-		<div >
-			<textarea ng-model="tests" name="tests" rows="8" cols="50"></textarea>
-		</div>
-		<span ng-init="load_example_code()"></span>
-	</body>
+      Choose which language you want to code in: <br>
+      <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
+      <br>
+      Choose which bot you want to beat<br>
+      <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
+      <br>
+      <br>
+      Status: {{status}}<br>
+      Result: 
+      <pre>{{result}}</pre>
+      <br>
+      Winner: {{winner}}</br>
+      Outcome: {{outcome}}</br>
+      <table border=1 bgcolor=#FFFFFF>
+         <tr >
+            <th>Computer</th>
+            <th>Player</th>
+         </tr>
+         <tr>
+            <td>{{computerMove}}</td>
+            <td>{{userMove}}</td>
+         </tr>
+      </table>
+      Place your code here:
+      <div>
+         <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
+      </div>
+      <input type="submit" value="Try and beat the bot!" ng-click="verify()">
+      <br>
+
+      <span ng-init="load_example_code()"></span>
+   </body>
 </html>
