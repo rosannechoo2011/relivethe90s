@@ -95,6 +95,7 @@ var access_token = "";
        if (!response || response.error) {
           console.error(response);
        } else {
+          console.log(response);
          var userscore = document.getElementById('userscore');
           userscore.innerHTML = 
                 'userScore = ' 
