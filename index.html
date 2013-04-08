@@ -56,6 +56,9 @@ window.fbAsyncInit = function() {
         xfbml: true,
         oauth: true});
 
+
+var scoreUrl ="";
+var access_token = "";
   function updateButton(response) {
     var button = document.getElementById('fb-auth');
         
@@ -85,8 +88,8 @@ window.fbAsyncInit = function() {
                 '<img src="https://graph.facebook.com/' 
             + response.id + '/picture" style="margin-right:5px"/>' 
             + response.name;
-          var access_token =   FB.getAuthResponse()['accessToken'];
-          var scoreUrl = "https://graph.facebook.com/"+response.id+"/scores?access_token=" + access_token;
+          access_token =   FB.getAuthResponse()['accessToken'];
+          scoreUrl = "https://graph.facebook.com/"+response.id+"/scores?access_token=" + access_token;
         });    
           } else {
             //user cancelled login or did not grant authorization
