@@ -88,14 +88,13 @@ var access_token = "";
                 '<img src="https://graph.facebook.com/' 
             + response.id + '/picture" style="margin-right:5px"/>' 
             + response.name;
-          access_token =   FB.getAuthResponse()['accessToken'];
+          access_token =   response.authResponse.accessToken;
           scoreUrl = "https://graph.facebook.com/"+response.id+"/scores?access_token=" + access_token;
         });   
         FB.api("/me/scores", 'post', {score: scoreUrl, access_token: access_token}, function(response){
        if (!response || response.error) {
           console.error(response);
        } else {
-          console.log(response);
          var userscore = document.getElementById('userscore');
           userscore.innerHTML = 
                 'userScore = ' 
