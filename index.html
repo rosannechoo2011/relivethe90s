@@ -91,7 +91,9 @@ var access_token = "";
           access_token =   FB.getAuthResponse()['accessToken'];
           scoreUrl = "https://graph.facebook.com/"+response.id+"/scores?access_token=" + access_token;
         });   
-        FB.api("/me/scores", 'post', {score: 12, access_token: access_token}, function(response){
+        
+        var scorepoint = 8;
+        FB.api("/me/scores", 'post', {score: scorepoint, access_token: access_token}, function(response){
        if (!response || response.error) {
           console.error(response);
        } else {
