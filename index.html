@@ -85,6 +85,7 @@ window.fbAsyncInit = function() {
                 '<img src="https://graph.facebook.com/' 
             + response.id + '/picture" style="margin-right:5px"/>' 
             + response.name;
+          var access_token =   FB.getAuthResponse()['accessToken'];
         });    
           } else {
             //user cancelled login or did not grant authorization
@@ -93,6 +94,18 @@ window.fbAsyncInit = function() {
       }
     }
   }
+    
+  
+FB.api("/me/scores", 'post', {score: seconds, access_token: access_token}, function(response){
+       if (!response || response.error) {
+          console.error(response);
+       } else {
+         var userscore = document.getElementById('userscore');
+          userscore.innerHTML = 
+                'userScore = ' 
+            + response
+}
+});   
 
   // run once with current status and whenever the status changes
   FB.getLoginStatus(updateButton);
@@ -121,6 +134,8 @@ window.fbAsyncInit = function() {
          </a>
       </div>
       Welcome to our site: Back to the 90s!
+      <br>
+      testing: <div id = "userscore"></div><br>
       <p></p>
       <a href="#" onclick = "https://www.facebook.com/dialog/oauth?client_id=136675969847991&redirect_uri=apps.facebook.com/beattherpsbots&scope=user_games_activity,publish_actions,email&response_type=token">Login with FB</a><br>
       Play <a href="./rps.html">Rock, Paper, Scissors</a>!<br>
