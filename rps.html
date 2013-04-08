@@ -28,7 +28,14 @@
                {language : 'java', urlName : 'java' },
                {language : 'js', urlName : 'js' },
              ];
+             
+             $scope.bots = [
+               {bot : 'dumb bot', urlName : 'dumb bot' },
+               {bot : 'smart bot', urlName : 'smart bot' },
+             ];
          
+            $scope.bot = 'dumb bot';
+              
              $scope.language = 'java';
          
                      //Some example code for each language.
@@ -78,10 +85,15 @@
                      function getWinner(userChoice){
                           
                           var computerChoice = ""; 
-                          var computer = Math.random(); 
-                          if (computer < 0.34) {computerChoice = "rock";} 
-                          else if (computer < 0.67){computerChoice = "paper";} 
-                          else {computerChoice = "scissors";} 
+                          
+                          if($scope.bot==="dumb bot"){
+                            computerChoice = "rock";
+                          }else {
+                            var computer = Math.random(); 
+                            if (computer < 0.34) {computerChoice = "rock";} 
+                            else if (computer < 0.67){computerChoice = "paper";} 
+                            else {computerChoice = "scissors";} 
+                          }
                        
                        var msg = "";
                
@@ -130,9 +142,13 @@
       </script>
    </head>
    <body ng-controller="FirstController">
+      <br>
+      Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
-      <input type="submit" value="verify {{language}} code" ng-click="verify()">
+      
+      Choose which bot you want to beat<br>
+      <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
       <br>
       Status: {{status}}<br>
       Result: 
@@ -154,10 +170,8 @@
       <div>
          <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
       </div>
-      Tests:
-      <div >
-         <textarea ng-model="tests" name="tests" rows="8" cols="50"></textarea>
-      </div>
+<input type="submit" value="Try and beat the bot!" ng-click="verify()">
+      <br>
       <span ng-init="load_example_code()"></span>
    </body>
 </html>
