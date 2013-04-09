@@ -12,7 +12,6 @@ window.fbAsyncInit = function() {
       //user is already logged in and connected
       var userInfo = document.getElementById('user-info');
       FB.api('/me', function(response) {
-        $scope.userid = response;
         userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
       + response.id + '/picture">' + response.name;
         button.innerHTML = 'Logout';
@@ -30,7 +29,6 @@ window.fbAsyncInit = function() {
         FB.login(function(response) {
       if (response.authResponse) {
             FB.api('/me', function(response) {
-              $scope.userid = response;
           var userInfo = document.getElementById('user-info');
           userInfo.innerHTML = 
                 '<img src="https://graph.facebook.com/' 
