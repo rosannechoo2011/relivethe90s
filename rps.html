@@ -253,17 +253,18 @@
                                   description: 'Think you can beat my score? Come try this game out!'
                                 };
                                  
-                                 try{
-                                function callback(response) {
+                                 //try{
+                                //function callback(response) {
                                    
-                                  document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                  //document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
                                    
-                                }
+                                //}
                         
-                                FB.ui(obj, callback);
-                                    } catch (err){
-                                       console.log("user didnt share");
-                                    }
+                                FB.ui(obj);
+                                //.FB.ui(obj,callback);
+                                    //} catch (err){
+                                      // console.log("user didnt share");
+                                    //}
                               
                               }
                       postToFeed();
