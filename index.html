@@ -11,12 +11,29 @@
       ga('send', 'pageview');
     
     </script>
-    
-    <script language = "javascript">
-       function redirect(newurl){
-         location.replace(newurl);
-       }
-    </script>
+
+      <script src="angular.min.js"></script>
+      <script src="angular-resource.min.js"></script>
+      <script src="jquery.min.js"></script>
+      <script src="angular-ace.js"></script>
+      <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+         angular.module('myApp', ['ngResource','ace']);
+         
+         function FirstController($scope, $resource){ 
+            $scope.redirect(newurl){
+               location.replace(newurl);
+             };
+            
+             $scope.share = function(){
+                FB.ui({
+                    method: 'apprequests',
+                    message: "Come play Relive the 90s: Beat the Bots with me!"
+                });     
+
+             };
+         }
+      </script>      
     
       <style type="text/css">
          <!-- 
@@ -76,10 +93,8 @@
             -->
       </style>
    </head>
-   <body>
-<div id="fb-root"></div>
+   <body ng-controller="FirstController">
 
-<div id="user-info"></div>
 
 <div id="div-1">
     <img src="http://www.muralswallpaper.co.uk/sites/default/files/styles/product_full/public/product_images/Rainbow-Track-Retro-Mural-Wallpaper-Room.jpg"
@@ -93,24 +108,22 @@
 </div>
 
 <div id="div-1b">
-
 <img src="https://dl.dropbox.com/u/40315869/cloud_images/rps.png" border="0" style="border:none;max-width:35%;" alt="Play Rock Paper Scissors!" onclick="javascript:redirect('./rps.html');"/>
-
 </div>
 
 <div id="div-1c">
-  <a href="./leaderboard.html" target="_blank">
-<img src="https://dl.dropbox.com/u/40315869/cloud_images/lead.png" border="0" style="border:none;max-width:40%;" alt="View High Scores" />
-</a>
+<img src="https://dl.dropbox.com/u/40315869/cloud_images/lead.png" border="0" style="border:none;max-width:40%;" alt="View High Scores" onclick="javascript:redirect('./leaderboard.html');"/>
 </div>
 
 <div id="div-1f">
-  <a href="./share.html">
-    <img src="http://dl.dropbox.com/u/40747801/share_icon.png" width = 100px height = 40px></a><br>
+    <img src="http://dl.dropbox.com/u/40747801/share_icon.png" width = 100px height = 40px ng-onclick="share()">
+    <br>
 </div>
 <div id="div-1g">
-  <a href="./fblogin.js">
-    <img src="http://dl.dropbox.com/u/40747801/loginFB.png" width=200px height=40px></a><br> 
+  <div id="fb-root>"></div>
+  <div id="user-info"></div>
+  <p><button id="fb-auth">Login</button></p>
+   <script src = "./fblogin.js"></script>
 </div>
 
    </body>
