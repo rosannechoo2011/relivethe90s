@@ -129,6 +129,7 @@
          winner ="Congrats, you beat the bot!";
          } else { //computer beats user
          computerWins++;
+         userWins = 0;
          msg = computer+" "+results[computer+""+user]+" "+user;
          winner = "Try again, this bot is good (;";
          }
@@ -147,7 +148,7 @@
                     console.log("Score retrieved from Facebook");  
                     var arr = response["data"];
                     userStreak = arr[0].score;   
-                    alert("streak=" + userStreak);
+                    $scope.userStreak = userStreak;
                     
                     //to remove from app later on, for testing
                     var scorer = 0;
@@ -201,9 +202,8 @@
       <br>
       <div id = "fb-root"></div>
       <div id = "user-info"></div>
-      <p><button id="fb-auth">Login</button></p>
+      <p><button id="fb-auth">Login</button><input type="submit" value="Share this game with your friends!" ng-click="share()"></p>
       <script src = "./fblogin.js"></script>
-      <input type="submit" value="Share this game with your friends!" ng-click="share()">
       Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
@@ -227,6 +227,7 @@
             <td>{{userMove}}</td>
          </tr>
       </table>
+      Your HighScore: {{userStreak}}
       Player Solution:
       <div>
          <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
