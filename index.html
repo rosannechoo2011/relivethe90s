@@ -1,4 +1,4 @@
-<html xmlns:fb="http://ogp.me/ns/fb#">
+<html xmlns:fb="http://ogp.me/ns/fb#" ng-app="myApp">
    <head>
     
     <script>
@@ -19,9 +19,8 @@
       <script src="ace.js" type="text/javascript" charset="utf-8"></script>
       <script language="javascript" type="text/javascript">
          angular.module('myApp', ['ngResource','ace']);
-         
-         function FirstController($scope, $resource){ 
-
+      function FirstController($scope, $resource){ 
+             
              $scope.share = function(){
                 FB.ui({
                     method: 'apprequests',
@@ -29,8 +28,9 @@
                 });     
 
              };
-         }
-      </script>      
+         
+           }
+      </script>
     
       <style type="text/css">
          <!-- 
