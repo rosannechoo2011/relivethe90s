@@ -64,8 +64,9 @@
                                  );
          var userWins = 0;
          var computerWins = 0;
-             $scope.verify = function($scope){
-               var userStreak = $scope.userStreak;
+             $scope.verify = function(){
+               var userStreak = 0;
+         
          
                data = {solution: $scope.solution, tests: $scope.tests}
                jsonrequest = btoa(JSON.stringify(data));
@@ -137,6 +138,30 @@
                   $scope.userMove = user;
                $scope.winner = winner;
                   $scope.outcome = msg;
+                  
+                  
+                  //get userscore
+                  var getScore = function(){
+                   console.log("Getting current score from Facebook");
+                  FB.api('/me/scores/', 'get', function(response) {
+                    console.log("Score retrieved from Facebook");  
+                    var arr = response["data"];
+                    userStreak = arr[0].score;   
+                    alert("streak=" + userStreak);
+                      });
+                       };
+                       getScore();
+                       
+                       function pausecomp(millis) 
+                        {
+                        var date = new Date();
+                        var curDate = null;
+                        
+                        do { curDate = new Date(); } 
+                        while(curDate-date < millis);
+                        } 
+                        
+                        pausecomp(15000);
 
                   alert("userWin=" + userWins);
                   if (userStreak < userWins){
@@ -166,10 +191,7 @@
       <div id = "fb-root"></div>
       <div id = "user-info"></div>
       <p><button id="fb-auth">Login</button></p>
-      <script src = "./fblogin.js">
-        $scope.userStreak = userStreak;
-        alert("$scope.userStreak=" + $scope.userStreak);
-      </script>
+      <script src = "./fblogin.js"></script>
       Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
@@ -197,7 +219,7 @@
       <div>
          <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
       </div>
-<input type="submit" value="Try and beat the bot!" ng-click="verify($scope)">
+<input type="submit" value="Try and beat the bot!" ng-click="verify()">
       <br>
       <span ng-init="load_example_code()"></span>
    </body>
