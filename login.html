@@ -9,13 +9,138 @@
     ga('send', 'pageview');
   
   </script>  
-  
+  <style type='text/css'>
+        body {background-image:url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg") ;}
+        fieldset {
+        display: block;
+        -webkit-margin-start: 2px;
+        -webkit-margin-end: 2px;
+        -webkit-padding-before: 0.35em;
+        -webkit-padding-start: 0.75em;
+        -webkit-padding-end: 0.75em;
+        -webkit-padding-after: 0.625em;
+        border: 2px dashed;
+        border-image: initial;
+        height: 150px;
+        width: 500px;
+        }
+        table {
+        display: table;
+        border-collapse: separate;
+        border-spacing: 2px;
+        border-color: gray;
+        }
+        tbody {
+        display: table-row-group;
+        vertical-align: middle;
+        border-color: inherit;
+        }
+        tr {
+        display: table-row;
+        vertical-align: inherit;
+        border-color: inherit;
+        }
+        td, th {
+        display: table-cell;
+        vertical-align: inherit;
+        }
+        label {
+        cursor: default;
+        }
+        fieldset table td input {
+        height: 30px;
+        width: 300px;
+        border: 0;
+        background: #00ACEE;
+        font-size: 20px;
+        padding-top: 5px;
+        color: #fff;
+        padding-left: 5px;
+        }
+        .formButton {
+        font-weight: bold;
+        padding: 5px;
+        border: 0;
+        color: #fff;
+        background: #2D2D2D;
+        margin-top: 5px;
+        }
+        legend {
+        display: block;
+        -webkit-padding-start: 2px;
+        -webkit-padding-end: 2px;
+        border: none;
+        border-image: initial;
+        }
+        form {
+        display: block;
+        margin-top: 0em;
+        }
+        #loginbutton{
+            font-family:Courier;
+        }
+        #password{
+            font-family:Courier;
+        }
+        #username{
+            font-family:Courier;
+            font-size:20px;
+        }
+        a, a:visited {
+        color: #00acee;
+        text-decoration: none;
+        }
+        a {
+        outline: none;
+        }
+        a:-webkit-any-link {
+        color: #00ACEE;
+        cursor: auto;
+        }
+        h2 {
+        display: block;
+        font-size: 1.5em;
+        -webkit-margin-before: 0.83em;
+        -webkit-margin-after: 0.83em;
+        -webkit-margin-start: 0px;
+        -webkit-margin-end: 0px;
+        font-weight: bold;
+        }
+      </style>
 </head>
-Please login:
-<p></p>
-<form action = "./welcomeback.html">
-  Username: <input type="text" length="30"/>
-  Password: <input type="password"/>
-  
-  <input type ="submit" value="login!"/>
-</form>
+<form name="login" action = "./welcomeback.html">
+<fieldset>
+    <legend><font face="courier" size=5px>Member Login</font></legend>
+<table summary="Login">
+    <tbody>
+        <tr>
+            <td class="first">
+                <label for="email">
+                    <font face="courier">Email</font>
+                </label>
+            </td>
+            <td>
+                <input id="username" type="text" name="email" class="formField" onfocus="if(this.value=='email or username')this.value='';" onblur="if(this.value=='')this.value='email or username';" value="email or username" maxlength="50">
+            </td>
+        </tr>
+            <tr>
+                <td>
+                    <label for="password"><font face="courier">Password</font></label>
+                </td>
+                <td>
+                    <input type="password" name="password" id="password" class="fomrField" onfocus="if(this.value=='password')this.value='';" onblur="if(this.value=='')this.value='password';" value ="password" maxlength="30">
+                </td>
+            </tr>  
+                <tr>
+                    <td></td>
+                    <td>
+                        <input id="loginbutton" class="formButton" name="login" type="submit" value="Login!">
+                    </td>
+                </tr>
+    </tbody>
+</table>
+</fieldset>
+    </form>  
+    <h2>
+        <a href="./signup.html"><font face="courier" size= 5px>Not a member? Sign up here!></font></a>
+    </h2>
