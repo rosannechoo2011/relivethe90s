@@ -101,6 +101,20 @@
          
          var choices = ["rock","paper","scissors"]; // you could comment out the last two for the standard game.
          
+         
+         var appId = '136675969847991';
+
+          // Initialize the JS SDK
+          FB.init({
+            appId: appId,
+            frictionlessRequests: true,
+            cookie: true,
+          });
+
+          FB.getLoginStatus(function(response) {
+            uid = response.authResponse.userID ? response.authResponse.userID : null;
+          });
+         
          var userStreak = "";
          var getScore = function(){
                    console.log("Getting current score from Facebook");
