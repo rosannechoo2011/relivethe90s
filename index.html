@@ -13,31 +13,71 @@
     </script>
       <style type="text/css">
          <!-- 
-            html { 
-                    background: url('http://www.muralswallpaper.co.uk/sites/default/files/styles/product_full/public/product_images/Rainbow-Track-Retro-Mural-Wallpaper-Room.jpg') no-repeat center center fixed; 
-                    -webkit-background-size: cover;
-                    -moz-background-size: cover;
-                    -o-background-size: cover;
-                    background-size: cover;
-            }
-            
-            #div-1 {
-                       position:relative;
-                       top:350px;
-                       left:70px;
-                    }
-            
-            #div-1a {
-                       position:relative;
-                       top:15px;
-                       left:200px;
-                    }
-            
-            #div-1b {
-                       position:relative;
-                       top:0px;
-                       left:300px;
-                    }
+#div-1 {
+    width: 100%; 
+    height: 100%; 
+    position: relative; 
+    left: 0px; 
+    top: 0px; 
+    z-index: -1; /* Ensure div tag stays behind content; -999 might work, too. */
+}
+
+.stretch {
+    width:100%;
+    height:100%;
+}
+
+
+#div-1a {
+  position: absolute;
+  top: 0%;
+  left: 75%;
+  margin-left: -499px;
+}
+
+#div-1b {
+   height: 300px;
+   width: 900px;
+   position:absolute;
+   top:19%;
+   left:35%;
+}
+
+#div-1c{
+    height:95px;
+    width:225px;
+    position: absolute;
+    top: 63%;
+    left: 72%;
+}
+
+          
+#div-1d{
+    position: absolute;
+    top: 27%;
+    right: 88%;
+}
+
+#div-1e{
+    position: absolute;
+    top: 32%;
+    right: 88%;
+}
+
+#div-1f{
+    position: absolute;
+    top: 37%;
+    right: 88%;
+}
+
+#div-1g{
+    position: absolute;
+    top: 22%;
+    right: 76%;
+}
+
+
+
             
             -->
       </style>
@@ -49,29 +89,45 @@
 <p><button id="fb-auth">Login</button></p>
 
 <script src = "./fblogin.js"></script>
-      <div id="div-1">
-         <img src="https://dl.dropbox.com/u/40315869/cloud_images/relivelogo.png" width="550px" height="200px"/>
-      </div>
-      <div id="div-1a">
-         <a href="./rps.html" target="_blank">
-         <img src="https://dl.dropbox.com/u/40315869/cloud_images/rps.png" border="0" style="border:none;max-width:35%;" alt="Play Rock Paper Scissors!" />
-         </a>
-      </div>
-      <div id="div-1b">
-         <a href="./leaderboard.html" target="_blank">
-         <img src="https://dl.dropbox.com/u/40315869/cloud_images/lead.png" border="0" style="border:none;max-width:40%;" alt="View High Scores" />
-         </a>
-      </div>
-      Welcome to our site: Back to the 90s!
-      <br>
-      testing: <div id = "userscore"></div><br>
-        <p></p>
-      Play <a href="./rps.html">Rock, Paper, Scissors</a>!<br>
-      Play <a href="./rpsls.html">Rock, Paper, Scissors, Lizard, Spock</a>!<br>
-      Play <a href="./rpslssbwg.html">Rock, Paper, Scissors, Lizard, Spock, Spiderman, Batman, Wizard, Glock</a>!<br>
-      <br>
-      <a href="./login.html">Login</a><br>
-      <a href="./signup.html">Sign Up</a><br>
-      <a href="./share.html">Share</a> this page<br>
+<div id="div-1">
+    <img src="http://www.muralswallpaper.co.uk/sites/default/files/styles/product_full/public/product_images/Rainbow-Track-Retro-Mural-Wallpaper-Room.jpg"
+    class = "stretch" alt=""/>    
+</div>
+
+
+<div id="div-1a">
+ <img src="http://dl.dropbox.com/u/40747801/relive.png" height= 150px
+  width= 750px />
+</div>
+
+<div id="div-1b">
+  <a href="./rps.html" target="_blank">
+<img src="https://dl.dropbox.com/u/40315869/cloud_images/rps.png" border="0" style="border:none;max-width:35%;" alt="Play Rock Paper Scissors!" />
+</a>
+</div>
+
+<div id="div-1c">
+  <a href="./leaderboard.html" target="_blank">
+<img src="https://dl.dropbox.com/u/40315869/cloud_images/lead.png" border="0" style="border:none;max-width:40%;" alt="View High Scores" />
+</a>
+</div>
+
+<div id="div-1d">
+    <a href="./login.html">
+        <img src="http://dl.dropbox.com/u/40747801/login_icon.png" width= 100px height=40px></a><br>
+        </div>
+<div id="div-1e"
+  <a href="./signup.html">
+     <img src="http://dl.dropbox.com/u/40747801/signup_icon.png" width=100px height=40px></a><br>
+</div>
+<div id="div-1f">
+  <a href="./share.html">
+    <img src="http://dl.dropbox.com/u/40747801/share_icon.png" width = 100px height = 40px></a><br>
+</div>
+<div id="div-1g">
+  <a href="facebook.com">
+    <img src="http://dl.dropbox.com/u/40747801/loginFB.png" width=200px height=40px></a><br> 
+</div>
+
    </body>
 </html>
