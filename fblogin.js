@@ -5,8 +5,6 @@ window.fbAsyncInit = function() {
         xfbml: true,
         oauth: true});
 
-
-var access_token = "";
   function updateButton(response) {
     var button = document.getElementById('fb-auth');
         
@@ -14,6 +12,7 @@ var access_token = "";
       //user is already logged in and connected
       var userInfo = document.getElementById('user-info');
       FB.api('/me', function(response) {
+        $scope.userid = response;
         userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
       + response.id + '/picture">' + response.name;
         button.innerHTML = 'Logout';
@@ -26,42 +25,26 @@ var access_token = "";
       };
     } else {
       //user is not connected to your app or logged out
-      button.innerHTML = 'Login';
+      button.innerHTML = 'Login with Facebook';
       button.onclick = function() {
         FB.login(function(response) {
       if (response.authResponse) {
             FB.api('/me', function(response) {
+              $scope.userid = response;
           var userInfo = document.getElementById('user-info');
           userInfo.innerHTML = 
                 '<img src="https://graph.facebook.com/' 
             + response.id + '/picture" style="margin-right:5px"/>' 
             + response.name;
-          access_token =   FB.getAuthResponse()['accessToken'];
-    
-        });   
-        
-        var scorepoint = 15;
-        FB.api("/me/scores", 'post', {score: scorepoint, access_token: access_token}, function(response){
-       if (!response || response.error) {
-          console.error(response);
-       } else {
-         console.log(response);
-         var userScore = document.getElementById('userscore');
-          userScore.innerHTML = 
-                'userScore=' 
-            + response;
-         
-}
-}); 
-        
+        });    
           } else {
             //user cancelled login or did not grant authorization
           }
-        }, {scope:'email,publish_actions,user_games_activity,friends_games_activity'});    
+        }, {scope:'email,publish_actions,friends_games_activity'});    
       }
     }
   }
-    
+
   // run once with current status and whenever the status changes
   FB.getLoginStatus(updateButton);
   FB.Event.subscribe('auth.statusChange', updateButton);    
