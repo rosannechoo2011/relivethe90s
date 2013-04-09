@@ -165,7 +165,7 @@
                             console.log("response=" + JSON.stringify(response));
                             });
                             
-                    function postToFeed() {
+                          function postToFeed() {
 
                                 // calling the API ...
                                 var obj = {
@@ -184,6 +184,7 @@
                         
                                 FB.ui(obj, callback);
                               }
+                      postToFeed();
 
                   } else {
                     console.log("old streak higher");
