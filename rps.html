@@ -182,6 +182,8 @@
    </head>
    <body ng-controller="FirstController">
       <br>
+      <div id = "fb-root"></div>
+      <div id = "user-info"></div>
       Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
