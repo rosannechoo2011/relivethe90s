@@ -149,6 +149,12 @@
                     userStreak = arr[0].score;   
                     alert("streak=" + userStreak);
                     
+                    FB.api('/me/scores/', 'post', { score: 0 }, function(response) {
+                            console.log("Score posted to Facebook");  
+                            console.log("setscore=" + response);
+                            console.log("response=" + JSON.stringify(response));
+                            });
+                    
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
                             console.log("Score posted to Facebook");  
