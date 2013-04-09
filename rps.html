@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
    <head>
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-39869790-1', 'github.com');
+      ga('send', 'pageview');
+    
+    </script>
+   
       <title>RPS: Game On!</title>
       <style type='text/css'>
          /* MUST HAVE WIDTH/HEIGHT */
@@ -173,9 +184,9 @@
                                   redirect_uri: 'http://rosannechoo2011.github.com/relivethe90s',
                                   link: 'https://apps.facebook.com/relivethe90s',
                                   picture: 'http://img.scoop.it/psFzcwH_k9sQmfl592S8yDl72eJkfbmt4t8yenImKBVaiQDB_Rd1H6kmuBWtceBJ',
-                                  name: 'Relive the 90s',
-                                  caption: 'Beat the Bots!',
-                                  description: 'Come try this game out!'
+                                  name: 'I got a new high score on Relive the 90s: Beat the Bots!',
+                                  caption: 'High score:' + userWins,
+                                  description: 'Think you can beat my score? Come try this game out!'
                                 };
                         
                                 function callback(response) {
