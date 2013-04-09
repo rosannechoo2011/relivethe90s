@@ -171,14 +171,12 @@
                     FB.api('/me/scores/', 'post', { score: scorer }, function(response) {
                             console.log("Score posted to Facebook");  
                             console.log("setscore=" + response);
-                            console.log("response=" + JSON.stringify(response));
                             });
                     
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
                             console.log("Score posted to Facebook");  
                             console.log("setscore=" + response);
-                            console.log("response=" + JSON.stringify(response));
                             });
                             
                           function postToFeed() {
@@ -190,7 +188,7 @@
                                   link: 'http://apps.facebook.com/beattherpsbots/',
                                   picture: 'http://img.scoop.it/psFzcwH_k9sQmfl592S8yDl72eJkfbmt4t8yenImKBVaiQDB_Rd1H6kmuBWtceBJ',
                                   name: 'I got a new high score on Relive the 90s: Beat the Bots!',
-                                  caption: 'High score:' + userWins,
+                                  caption: 'Streak: ' + userWins,
                                   description: 'Think you can beat my score? Come try this game out!'
                                 };
                         
@@ -258,7 +256,7 @@
             <td>{{userMove}}</td>
          </tr>
       </table>
-      Your HighScore: {{userStreak}}<br>
+      Your Highest Streak: {{userStreak}}<br>
       <br>
       How to Play:<br>
       We've loaded a sample method for you in the box below. 
