@@ -283,6 +283,15 @@
          
            }
       </script>
+       <script language="javascript"> function goLite(FRM, BTN) {
+     window.document.forms[FRM].elements[BTN].style.color="#AA3300";
+     window.document.forms[FRM].elements[BTN].style.backgroundImage="url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg")";
+ }
+ function goDim(FRM, BTN) {
+     window.document.forms[FRM].elements[BTN].style.color="#775555";
+     window.document.forms[FRM].elements[BTN].style.backgroundImage="url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg")";
+ }
+ </script>
    </head>
    <body ng-controller="FirstController">
       <br>
@@ -358,7 +367,7 @@
         <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
     </div>
     <div align="center">
-        <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()" onMouseOver="goLite(this.form.name,this.name)" onMouseOut="goDim(this.form.name,this.name)">
+        <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()" onMouseOver="goLite(this.form.name,this.name)" onMouseOut="goDim(this.form.name,this.name)"/>
     </div>
    <br>
     <div id="1a" align="center">
