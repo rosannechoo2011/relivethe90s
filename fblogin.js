@@ -21,10 +21,10 @@ window.fbAsyncInit = function($scope) {
                          console.log("Getting current score from Facebook");
                         FB.api('/me/scores/', 'get', function(response) {
                           console.log("Score retrieved from Facebook");  
-                          var arr = response["data"];
+                          var arr = response.data;
                           userStreak = arr[0].score; 
                           alert("streak=" + userStreak);
-                          arr[0].score = $scope.userStreak;
+                          $scope.userStreak = arr[0].score;
                           alert("scope.userStreak=" + $scope.userStreak);
               });
 
