@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="myApp">
    <head>
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      
-        ga('create', 'UA-39869790-1', 'github.com');
-        ga('send', 'pageview');
-      
-      </script>  
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-39869790-1', 'github.com');
+      ga('send', 'pageview');
+    
+    </script>
    
       <title>RPSLSSBWG: Game On!</title>
       <style type='text/css'>
@@ -35,18 +35,20 @@
          angular.module('myApp', ['ngResource','ace']);
          
          function FirstController($scope, $resource){ 
+       
+           
              $scope.supported_langugages = [
                {language : 'java', urlName : 'java' },
                {language : 'js', urlName : 'js' },
              ];
              
-            $scope.bots = [
+             $scope.bots = [
                {bot : 'dumb bot', urlName : 'dumb bot' },
                {bot : 'smart bot', urlName : 'smart bot' },
              ];
          
             $scope.bot = 'dumb bot';
-         
+              
              $scope.language = 'java';
          
                      //Some example code for each language.
@@ -73,8 +75,12 @@
                                      {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
                                         }
                                  );
-         
+         var userWins = 0;
+         var computerWins = 0;
              $scope.verify = function(){
+               var userStreak = 0;
+         
+         
                data = {solution: $scope.solution, tests: $scope.tests}
                jsonrequest = btoa(JSON.stringify(data));
          
@@ -97,7 +103,7 @@
                           
                           var computerChoice = ""; 
                           
-                         if($scope.bot==="dumb bot"){
+                          if($scope.bot==="java-bot1"){
                             computerChoice = "batman";
                           }else {
 
@@ -162,10 +168,11 @@
          var user = userChoice.toString().trim().replace("[","").replace("]",""); 
          alert(computer);
          alert(user);
+         var winner = "";
          var compare = function(user,computer){
          if (user === computer){
          msg = "The result is a tie!";
-         winner = "Draw"
+         winner = "Draw";
          }
          else if (results[user+""+computer] !== undefined){ // user beats computer
          userWins++;
@@ -173,33 +180,109 @@
          winner ="Congrats, you beat the bot!";
          } else { //computer beats user
          computerWins++;
+         userWins = 0;
          msg = computer+" "+results[computer+""+user]+" "+user;
          winner = "Try again, this bot is good (;";
          }
-         }
-         //loop until the user enters something invalid
+         };
                   compare(user, computer);
                   $scope.computerMove = computer;
                   $scope.userMove = user;
                $scope.winner = winner;
                   $scope.outcome = msg;
+                  
+                  
+                  //get userscore
+                  var getScore = function(){
+                   console.log("Getting current score from Facebook");
+                  FB.api('/me/scores/', 'get', function(response) {
+                    console.log("Score retrieved from Facebook");  
+                    try{
+                    var arr = response["data"];
+                    userStreak = arr[0].score;  
+                    } catch(err) {
+                      console.log("default set");
+                      userStreak = 0;
+                    }
+                    $scope.userStreak = userStreak;
+                    
+                    //to remove from app later on, for testing
+                    var scorer = 0;
+                    FB.api('/me/scores/', 'post', { score: scorer }, function(response) {
+                            console.log("Score posted to Facebook");  
+                            console.log("setscore=" + response);
+                            console.log("response=" + JSON.stringify(response));
+                            });
+                    
+                    if (userStreak < userWins){
+                      FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
+                            console.log("Score posted to Facebook");  
+                            console.log("setscore=" + response);
+                            console.log("response=" + JSON.stringify(response));
+                            });
+                            
+                          function postToFeed() {
+
+                                // calling the API ...
+                                var obj = {
+                                  method: 'feed',
+                                  redirect_uri: 'http://rosannechoo2011.github.com/relivethe90s',
+                                  link: 'http://apps.facebook.com/beattherpsbots/',
+                                  picture: 'http://img.scoop.it/psFzcwH_k9sQmfl592S8yDl72eJkfbmt4t8yenImKBVaiQDB_Rd1H6kmuBWtceBJ',
+                                  name: 'I got a new high score on Relive the 90s: Beat the Bots!',
+                                  caption: 'Streak: ' + userWins,
+                                  description: 'Think you can beat my score? Come try this game out!'
+                                };
+                        
+                                function callback(response) {
+                                  document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                }
+                        
+                                FB.ui(obj, callback);
+                              }
+                      postToFeed();
+
+                  } else {
+                    console.log("old streak higher");
+                  }
+                    
+                      });
+                       };
+                       getScore();
+
+                  
                      }
                      
+             };
+             
+             $scope.share = function(){
+                FB.ui({
+                    method: 'apprequests',
+                    message: "Come play Relive the 90s: Beat the Bots with me!"
+                });     
+
              };
          
            }
       </script>
    </head>
    <body ng-controller="FirstController">
-      Choose which language you want to code in: <br>
+      <br>
+      <input type="submit" value="Home" onclick="window.location='./index.html';" >
+      <br>
+      
+      <div id = "fb-root"></div>
+      <div id = "user-info"></div>
+      <p><button id="fb-auth">Login</button><input type="submit" value="Share this game with your friends!" ng-click="share()"></p>
+      <script src = "./fblogin.js"></script>
+      Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
       
       Choose which bot you want to beat<br>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
-
       <br>
-Status: {{status}}<br>
+      Status: {{status}}<br>
       Result: 
       <pre>{{result}}</pre>
       <br>
@@ -215,11 +298,22 @@ Status: {{status}}<br>
             <td>{{userMove}}</td>
          </tr>
       </table>
-      Place your code here:
+      Your HighScore: {{userStreak}}<br>
+      <br>
+      How to Play:
+      <p>
+      We've loaded a sample method for you in the box below. 
+      <p>
+      Step 1: Hit "Try and beat the bot!" and see what happens!<br>
+      Step 2: Change the code and try and beat the dumb bot!<br>
+      Step 3: Try and beat the smart bot!<br>
+      <br>
+      Player Solution:
       <div>
          <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
       </div>
-      <input type="submit" value="Try and beat the bot!" ng-click="verify()">
+<input type="submit" value="Try and beat the bot!" ng-click="verify()">
+
       <br>
       <span ng-init="load_example_code()"></span>
    </body>
