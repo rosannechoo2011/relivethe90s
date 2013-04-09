@@ -69,7 +69,15 @@
                   });
 
                     
-                  }
+                  };
+                  
+                   $scope.share = function(){
+                      FB.ui({
+                          method: 'apprequests',
+                          message: "Come play Relive the 90s: Beat the Bots with me!"
+                      });     
+      
+                   };
                   //getLeaderboard();
          }
            
