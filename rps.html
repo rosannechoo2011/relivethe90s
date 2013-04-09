@@ -102,10 +102,10 @@
          var choices = ["rock","paper","scissors"]; // you could comment out the last two for the standard game.
          
          var userStreak = "";
-         function (){
+         function getScore(){
                    console.log("Getting current score from Facebook");
                   FB.api('/me/scores/', 'get', function(response) {
-                    console.log("Score posted to Facebook");   
+                    console.log("Score retrieved from Facebook");   
                     userStreak = response;
         });
          };
