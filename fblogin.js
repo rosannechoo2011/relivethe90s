@@ -1,4 +1,4 @@
-window.fbAsyncInit = function() {
+window.fbAsyncInit = function($scope) {
   FB.init({ appId: '136675969847991', 
         status: true, 
         cookie: true,
@@ -16,6 +16,18 @@ window.fbAsyncInit = function() {
       + response.id + '/picture"><br> Welcome,' + response.name;
         button.innerHTML = 'Logout';
       });
+      
+      var getScore = function(){
+                         console.log("Getting current score from Facebook");
+                        FB.api('/me/scores/', 'get', function(response) {
+                          console.log("Score retrieved from Facebook");  
+                          var arr = response["data"];
+                          $scope.userStreak = arr[0].score;   
+                          alert("streak=" + userStreak);
+              });
+               };
+               getScore();
+      
       button.onclick = function() {
         FB.logout(function(response) {
           var userInfo = document.getElementById('user-info');
