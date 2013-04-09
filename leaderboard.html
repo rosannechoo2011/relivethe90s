@@ -51,19 +51,17 @@
                     var board = "";
                     
                     for (int i = 0; i < arr.length; i++){
-                      var user = arr[0].user;
+                      var user = arr[i].user;
                       alert ("user = " + user);
                       var player = user.name;
                       alert ("player = " + player);
-                      var score = arr[0].score;
+                      var score = arr[i].score;
                       alert ("score = " + score);
                       board+="<tr><td>" + player + "</td>" + score + "<td></td></tr>";
                       
                     }
                     
-                    leaderboard.innerHtml = '<table border = \'1\'><th>Player</th><th>Streak</th>'+
-                    board                   
-                    + '</table>';
+                    leaderboard.innerHtml = '<table border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
 
                   });
 
