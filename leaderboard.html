@@ -37,15 +37,14 @@
          function FirstController($scope, $resource){ 
 
                   //get leaderboard
-                  $scope.getLeaderboard = function(){
+                  //$scope.getLeaderboard = function(){
+                  function getLeaderboard(){
                    console.log("Getting current leaderboard from Facebook");
                    var appId = '136675969847991';
                    
                   FB.api('/' + appId + '/scores', 'get', function(response) {
                     console.log("all scores retrieved from Facebook");  
                     console.log(JSON.stringify(response));
-                    
-                    var leaderboardInfo = document.getElementById("leaderboard");
                     
                     var arr = response["data"];
                     var board = "";
@@ -64,8 +63,8 @@
                       board = board + "<tr><td>" + player + "</td>" + score + "<td></td></tr>";
                       
                     }
-                    
-                    leaderboardInfo.innerHtml = '<table border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
+                    var leaderboardInfo = document.getElementById("leaderboard");
+                    leaderboardInfo.innerHTML = '<table border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
                     
                   });
 
