@@ -155,12 +155,13 @@
                   //get userscore
                   var getScore = function(){
                    console.log("Getting current score from Facebook");
+                  try{
                   FB.api('/me/scores/', 'get', function(response) {
-                    if (response != undefined || !response.error ){
                     console.log("Score retrieved from Facebook");  
                     var arr = response["data"];
                     userStreak = arr[0].score;  
-                    } else {
+                    } catch(err) {
+                      console.log("default set");  
                       userStreak = 0;
                     }
                     $scope.userStreak = userStreak;
@@ -227,6 +228,9 @@
    </head>
    <body ng-controller="FirstController">
       <br>
+      <input type="submit" value="Home" ng-click="./index.html">
+      <br>
+      
       <div id = "fb-root"></div>
       <div id = "user-info"></div>
       <p><button id="fb-auth">Login</button><input type="submit" value="Share this game with your friends!" ng-click="share()"></p>
