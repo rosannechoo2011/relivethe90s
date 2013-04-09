@@ -46,6 +46,11 @@ var access_token = "";
           console.error(response);
        } else {
          console.log(response);
+         var userScore = document.getElementById('userscore');
+          userScore.innerHTML = 
+                'userScore=' 
+            + response;
+         
 }
 }); 
         
