@@ -62,7 +62,8 @@
                                      {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
                                         }
                                  );
-         
+         var userWins = 0;
+         var computerWins = 0;
              $scope.verify = function(){
                data = {solution: $scope.solution, tests: $scope.tests}
                jsonrequest = btoa(JSON.stringify(data));
@@ -107,17 +108,13 @@
                    console.log("Getting current score from Facebook");
                   FB.api('/me/scores/', 'get', function(response) {
                     console.log("Score retrieved from Facebook");  
-                    jsonres = JSON.stringify(response);
-                    console.log("res" + jsonres);
-                    
                     var arr = response["data"];
-                    userStreak = arr[0].score;        
+                    userStreak = arr[0].score;   
+                    alert ("streak=" = userStreak);
         });
          };
          getScore();
-         
-         var userWins = 0;
-         var computerWins = 0;
+
          var results = {
          "scissorspaper" : "cuts",//Scissors cuts paper
          "paperrock" : "covers", //Paper covers rock
@@ -150,11 +147,13 @@
                $scope.winner = winner;
                   $scope.outcome = msg;
 
+                  alert("userWin=" userWins);
                   if (userStreak < userWins ){
                         var setscore = function(userWins){
                            console.log("Posting score to Facebook");
                           FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
-                            console.log("Score posted to Facebook");           
+                            console.log("Score posted to Facebook");  
+                            console.log(response);
                             });
       
                         }
