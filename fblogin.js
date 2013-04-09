@@ -40,7 +40,7 @@ var access_token = "";
     
         });   
         
-        var scorepoint = 12;
+        var scorepoint = 15;
         FB.api("/me/scores", 'post', {score: scorepoint, access_token: access_token}, function(response){
        if (!response || response.error) {
           console.error(response);
