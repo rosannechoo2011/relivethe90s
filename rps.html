@@ -168,6 +168,7 @@
       <p><button id="fb-auth">Login</button></p>
       <script src = "./fblogin.js">
         $scope.userStreak = userStreak;
+        alert("$scope.userStreak=" + $scope.userStreak);
       </script>
       Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
