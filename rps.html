@@ -165,7 +165,26 @@
                             console.log("response=" + JSON.stringify(response));
                             });
                             
-      
+                    function postToFeed() {
+
+                                // calling the API ...
+                                var obj = {
+                                  method: 'feed',
+                                  redirect_uri: 'http://rosannechoo2011.github.com/relivethe90s',
+                                  link: 'https://developers.facebook.com/docs/reference/dialogs/',
+                                  picture: 'http://img.scoop.it/psFzcwH_k9sQmfl592S8yDl72eJkfbmt4t8yenImKBVaiQDB_Rd1H6kmuBWtceBJ',
+                                  name: 'Relive the 90s',
+                                  caption: 'Beat the Bots!',
+                                  description: 'Come try this game out!'
+                                };
+                        
+                                function callback(response) {
+                                  document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                }
+                        
+                                FB.ui(obj, callback);
+                              }
+
                   } else {
                     console.log("old streak higher");
                   }
