@@ -114,7 +114,7 @@
                     userStreak = arr[0].score;        
         });
          };
-         
+         getScore();
          
          var userWins = 0;
          var computerWins = 0;
@@ -149,7 +149,7 @@
                   $scope.userMove = user;
                $scope.winner = winner;
                   $scope.outcome = msg;
-                  getScore();
+
                   if (userStreak < userWins ){
                         var setscore = function(userWins){
                            console.log("Posting score to Facebook");
