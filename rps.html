@@ -149,7 +149,9 @@
                     userStreak = arr[0].score;   
                     alert("streak=" + userStreak);
                     
-                    FB.api('/me/scores/', 'post', { score: 0 }, function(response) {
+                    //to remove from app later on, for testing
+                    var scorer = 0;
+                    FB.api('/me/scores/', 'post', { score: scorer }, function(response) {
                             console.log("Score posted to Facebook");  
                             console.log("setscore=" + response);
                             console.log("response=" + JSON.stringify(response));
