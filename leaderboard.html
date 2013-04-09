@@ -50,14 +50,14 @@
                     var arr = response["data"];
                     var board = "";
                     
-                    for (int i = 0; i < arr.length; i++){
+                    for (int i : arr){
                       var user = arr[i].user;
                       alert ("user = " + user);
                       var player = user.name;
                       alert ("player = " + player);
                       var score = arr[i].score;
                       alert ("score = " + score);
-                      board+="<tr><td>" + player + "</td>" + score + "<td></td></tr>";
+                      board = board + "<tr><td>" + player + "</td>" + score + "<td></td></tr>";
                       
                     }
                     
