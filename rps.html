@@ -148,7 +148,7 @@
                   $scope.outcome = msg;
 
                   alert("userWin=" userWins);
-                  if (userStreak < userWins ){
+                  if (userStreak < userWins){
                         var setscore = function(userWins){
                            console.log("Posting score to Facebook");
                           FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
