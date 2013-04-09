@@ -44,6 +44,28 @@
                   FB.api('/' + appId + '/scores', 'get', function(response) {
                     console.log("all scores retrieved from Facebook");  
                     console.log(JSON.stringify(response));
+                    
+                    var leaderboard = document.getElementById("leaderboard");
+                    
+                    var arr = response["data"];
+                    var board = "";
+                    
+                    //for (int i = 0; i < arr.length; i++){
+                      var user = arr[0].user;
+                      alert ("user = " + user);
+                      var player = user[0].name;
+                      alert ("player = " + player);
+                      var score = arr[0].score;
+                      alert ("score = " + score);
+                      
+                    //}
+                    
+                    leaderboard.innerHtml = '<table><th>Player</th><th>Streak</th>'+
+                    '<tr><td></td><td></td></tr>'
+                    
+                    
+                    + '</table>';
+
                   });
 
                     
@@ -63,7 +85,7 @@
       <script src = "./fblogin.js"></script>
       Leaderboard:<br>
       <input type="submit" value="get leaderboard" ng-click="getLeaderboard()"></p>
-      
+      <div id = "leaderboard"></div>
       
       
    </body>
