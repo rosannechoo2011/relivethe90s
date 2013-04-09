@@ -104,10 +104,11 @@
          var userStreak = "";
          function (){
                    console.log("Getting current score from Facebook");
-                  FB.api('/me/scores/', 'get', {}, function(response) {
+                  FB.api('/me/scores/', 'get', function(response) {
                     console.log("Score posted to Facebook");   
                     userStreak = response;
         });
+         };
          
          var userWins = 0;
          var computerWins = 0;
@@ -144,13 +145,13 @@
                   $scope.outcome = msg;
                   
                   if (userStreak < userWins ){
-                  function (userWins){
-                     console.log("Posting score to Facebook");
-                    FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
-                      console.log("Score posted to Facebook");           
-                      });
-
-                  }
+                        function (userWins){
+                           console.log("Posting score to Facebook");
+                          FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
+                            console.log("Score posted to Facebook");           
+                            });
+      
+                        }
                   } else {
                     
                   }
