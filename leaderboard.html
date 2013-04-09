@@ -37,17 +37,16 @@
          function FirstController($scope, $resource){ 
 
                   //get leaderboard
-                  var getLeaderboard = function(){
+                  $scope.getLeaderboard = function(){
                    console.log("Getting current leaderboard from Facebook");
                    var appId = '136675969847991';
                    
-                  FB.api('/' + appId + '/scores', 'get', ,function(response) {
+                  FB.api('/' + appId + '/scores', 'get', function(response) {
                     console.log("all scores retrieved from Facebook");  
                     console.log(JSON.stringify(response));
 
                     
            }
-           getLeaderboard();
            
       </script>
    </head>
@@ -61,7 +60,7 @@
       <p><button id="fb-auth">Login</button><input type="submit" value="Share this game with your friends!" ng-click="share()"></p>
       <script src = "./fblogin.js"></script>
       Leaderboard:<br>
-      
+      <input type="submit" value="get leaderboard" ng-click="getLeaderboard()"></p>
       
       
       
