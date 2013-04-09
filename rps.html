@@ -110,10 +110,10 @@
                     jsonres = JSON.stringify(response);
                     console.log("res" + jsonres);
                     
-                    var arr = jsonres["data"];
-                    alert("Data=" + data);
-                    alert("response[1]=" + response[1]);
-                    alert("response[1].score=" + response[1].score);
+                    var arr = response.getJSONArray("data");
+                    alert("arr=" + arr);            
+                    JSONObject json = new JSONObject(arr.getJSONObject(0).toString());
+                    alert("score=" + json.getString("score"));
                     
 
                     
