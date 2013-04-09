@@ -111,11 +111,13 @@
                     console.log("res" + jsonres);
                     
                     var arr = jsonres["data"];
-                    alert(arr);
-                    alert(data);
+                    alert("Data=" + data);
 
-                    userStreak = data[1];
-                    alert(userStreak);
+                    alert ("data.score=" + data.score);
+                    alert("data[0]="+data[0]);
+                    alert("data[1]=" + data[1]);
+                    alert("response.score" + response.score);
+                    
                     
         });
          };
