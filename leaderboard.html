@@ -45,7 +45,7 @@
                     console.log("all scores retrieved from Facebook");  
                     console.log(JSON.stringify(response));
                     
-                    var leaderboard = document.getElementById("leaderboard");
+                    var leaderboardInfo = document.getElementById("leaderboard");
                     
                     var arr = response["data"];
                     var board = "";
@@ -61,8 +61,8 @@
                       
                     }
                     
-                    leaderboard.innerHtml = '<table border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
-
+                    leaderboardInfo.innerHtml = '<table border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
+                    
                   });
 
                     
@@ -81,8 +81,7 @@
       <p><button id="fb-auth">Login</button><input type="submit" value="Share this game with your friends!" ng-click="share()"></p>
       <script src = "./fblogin.js"></script>
       Leaderboard:<br>
-      <input type="submit" value="get leaderboard" ng-click="getLeaderboard()"></p>
-      <div id = "leaderboard"></div>
+      <div id = "leaderboard"><input type="submit" value="get leaderboard" ng-click="getLeaderboard()"></p></div>
       
       
    </body>
