@@ -48,83 +48,7 @@
 <div id="user-info"></div>
 <p><button id="fb-auth">Login</button></p>
 
-<script>
-window.fbAsyncInit = function() {
-  FB.init({ appId: '136675969847991', 
-        status: true, 
-        cookie: true,
-        xfbml: true,
-        oauth: true});
-
-
-var scoreUrl ="";
-var access_token = "";
-  function updateButton(response) {
-    var button = document.getElementById('fb-auth');
-        
-    if (response.authResponse) {
-      //user is already logged in and connected
-      var userInfo = document.getElementById('user-info');
-      FB.api('/me', function(response) {
-        userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
-      + response.id + '/picture">' + response.name;
-        button.innerHTML = 'Logout';
-      });
-      button.onclick = function() {
-        FB.logout(function(response) {
-          var userInfo = document.getElementById('user-info');
-          userInfo.innerHTML="";
-    });
-      };
-    } else {
-      //user is not connected to your app or logged out
-      button.innerHTML = 'Login';
-      button.onclick = function() {
-        FB.login(function(response) {
-      if (response.authResponse) {
-            FB.api('/me', function(response) {
-          var userInfo = document.getElementById('user-info');
-          userInfo.innerHTML = 
-                '<img src="https://graph.facebook.com/' 
-            + response.id + '/picture" style="margin-right:5px"/>' 
-            + response.name;
-          access_token =   FB.getAuthResponse()['accessToken'];
-          scoreUrl = "https://graph.facebook.com/"+response.id+"/scores?access_token=" + access_token;
-        });   
-        
-        var scorepoint = 8;
-        FB.api("/me/scores", 'post', {score: scorepoint, access_token: access_token}, function(response){
-       if (!response || response.error) {
-          console.error(response);
-       } else {
-         var userscore = document.getElementById('userscore');
-          userscore.innerHTML = 
-                'userScore = ' 
-            + response
-}
-}); 
-        
-          } else {
-            //user cancelled login or did not grant authorization
-          }
-        }, {scope:'email,publish_actions,user_games_activity,friends_games_activity'});    
-      }
-    }
-  }
-    
-  // run once with current status and whenever the status changes
-  FB.getLoginStatus(updateButton);
-  FB.Event.subscribe('auth.statusChange', updateButton);    
-};
-    
-(function() {
-  var e = document.createElement('script'); e.async = true;
-  e.src = document.location.protocol 
-    + '//connect.facebook.net/en_US/all.js';
-  document.getElementById('fb-root').appendChild(e);
-}());
-
-</script>
+<script src = "./fblogin.js"></script>
       <div id="div-1">
          <img src="https://dl.dropbox.com/u/40315869/cloud_images/relivelogo.png" width="550px" height="200px"/>
       </div>
@@ -141,8 +65,7 @@ var access_token = "";
       Welcome to our site: Back to the 90s!
       <br>
       testing: <div id = "userscore"></div><br>
-      <p></p>
-      <a href="#" onclick = "https://www.facebook.com/dialog/oauth?client_id=136675969847991&redirect_uri=apps.facebook.com/beattherpsbots&scope=user_games_activity,publish_actions,email&response_type=token">Login with FB</a><br>
+        <p></p>
       Play <a href="./rps.html">Rock, Paper, Scissors</a>!<br>
       Play <a href="./rpsls.html">Rock, Paper, Scissors, Lizard, Spock</a>!<br>
       Play <a href="./rpslssbwg.html">Rock, Paper, Scissors, Lizard, Spock, Spiderman, Batman, Wizard, Glock</a>!<br>
