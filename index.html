@@ -21,10 +21,7 @@
          angular.module('myApp', ['ngResource','ace']);
          
          function FirstController($scope, $resource){ 
-            $scope.redirect = function(newurl){
-               location.replace(newurl);
-             };
-            
+
              $scope.share = function(){
                 FB.ui({
                     method: 'apprequests',
