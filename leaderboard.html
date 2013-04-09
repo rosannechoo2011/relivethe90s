@@ -37,8 +37,8 @@
          function FirstController($scope, $resource){ 
 
                   //get leaderboard
-                  //$scope.getLeaderboard = function(){
-                  function getLeaderboard(){
+                  $scope.getLeaderboard = function(){
+                  //function getLeaderboard(){
                    console.log("Getting current leaderboard from Facebook");
                    var appId = '136675969847991';
                    
@@ -70,7 +70,7 @@
 
                     
                   }
-                  getLeaderboard();
+                  //getLeaderboard();
          }
            
       </script>
