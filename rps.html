@@ -104,7 +104,7 @@
          var userStreak = "";
          function (){
                    console.log("Getting current score from Facebook");
-                  FB.api('/me/scores/', 'get', null, function(response) {
+                  FB.api('/me/scores/', 'get', {}, function(response) {
                     console.log("Score posted to Facebook");   
                     userStreak = response;
         });
