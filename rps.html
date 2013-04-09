@@ -107,8 +107,16 @@
                    console.log("Getting current score from Facebook");
                   FB.api('/me/scores/', 'get', function(response) {
                     console.log("Score retrieved from Facebook");  
-                    console.log("res" + JSON.stringify(response));
-                    userStreak = response;
+                    jsonres = JSON.stringify(response);
+                    console.log("res" + jsonres);
+                    
+                    var arr = jsonres["data"];
+                    alert(data);
+                    userStreak = arr[1].score;
+                    alert(userStreak);
+                    userStreak = arr[1];
+                    alert("f=" + userStreak);
+                    
         });
          };
          
