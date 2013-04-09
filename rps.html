@@ -25,17 +25,7 @@
          
          function FirstController($scope, $resource){ 
            
-           var userStreak = 0;
-               var getScore = function(){
-                         console.log("Getting current score from Facebook");
-                        FB.api('/me/scores/', 'get', function(response) {
-                          console.log("Score retrieved from Facebook");  
-                          var arr = response["data"];
-                          userStreak = arr[0].score;   
-                          alert("streak=" + userStreak);
-              });
-               };
-               getScore();
+           
            
              $scope.supported_langugages = [
                {language : 'java', urlName : 'java' },
@@ -68,7 +58,19 @@
                $scope.solution = $scope.d[$scope.language]["solution"];
                $scope.tests = $scope.d[$scope.language]["tests"];
              };
-         
+              
+              
+              var userStreak = 0;
+               var getScore = function(){
+                         console.log("Getting current score from Facebook");
+                        FB.api('/me/scores/', 'get', function(response) {
+                          console.log("Score retrieved from Facebook");  
+                          var arr = response["data"];
+                          userStreak = arr[0].score;   
+                          alert("streak=" + userStreak);
+              });
+               };
+               getScore();
          
              // For the loadbalancer version with fewer options. 
              $scope.VerifierModel = $resource('http://ec2-54-251-193-188.ap-southeast-1.compute.amazonaws.com/:language',
