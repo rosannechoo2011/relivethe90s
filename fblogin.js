@@ -17,17 +17,17 @@ window.fbAsyncInit = function($scope) {
         button.innerHTML = 'Logout';
       });
       
-      var getScore = function(){
+      
                          console.log("Getting current score from Facebook");
                         FB.api('/me/scores/', 'get', function(response) {
                           console.log("Score retrieved from Facebook");  
                           var arr = response["data"];
-                          var userStreak = arr[0].score; 
+                          userStreak = arr[0].score; 
                           alert("streak=" + userStreak);
+                          arr[0].score = $scope.userStreak;
+                          alert("scope.userStreak=" + $scope.userStreak);
               });
-               };
-               getScore();
-      
+
       button.onclick = function() {
         FB.logout(function(response) {
           var userInfo = document.getElementById('user-info');
