@@ -11,6 +11,13 @@
       ga('send', 'pageview');
     
     </script>
+    
+    <script language = "javascript">
+       function redirect(newurl){
+         location.replace(newurl);
+       }
+    </script>
+    
       <style type="text/css">
          <!-- 
 #div-1 {
@@ -86,9 +93,9 @@
 </div>
 
 <div id="div-1b">
-  <a href="./rps.html" target="_blank">
-<img src="https://dl.dropbox.com/u/40315869/cloud_images/rps.png" border="0" style="border:none;max-width:35%;" alt="Play Rock Paper Scissors!" />
-</a>
+
+<img src="https://dl.dropbox.com/u/40315869/cloud_images/rps.png" border="0" style="border:none;max-width:35%;" alt="Play Rock Paper Scissors!" onclick="javascript:redirect('./rps.html');"/>
+
 </div>
 
 <div id="div-1c">
