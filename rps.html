@@ -153,7 +153,7 @@
                            console.log("Posting score to Facebook");
                           FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
                             console.log("Score posted to Facebook");  
-                            console.log("setscore=" = response);
+                            console.log("setscore=" + response);
                             });
       
                         }
