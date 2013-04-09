@@ -185,6 +185,14 @@
                      }
                      
              };
+             
+             $scope.share = function(){
+                FB.ui({
+                    method: 'apprequests',
+                    message: "Come play Relive the 90s: Beat the Bots with me!"
+                });     
+
+             };
          
            }
       </script>
@@ -195,6 +203,7 @@
       <div id = "user-info"></div>
       <p><button id="fb-auth">Login</button></p>
       <script src = "./fblogin.js"></script>
+      <input type="submit" value="Share this game with your friends!" ng-click="share()">
       Choose which language you want to code in:<br>
       <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
@@ -223,6 +232,7 @@
          <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
       </div>
 <input type="submit" value="Try and beat the bot!" ng-click="verify()">
+
       <br>
       <span ng-init="load_example_code()"></span>
    </body>
