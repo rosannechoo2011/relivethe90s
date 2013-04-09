@@ -35,6 +35,8 @@
          angular.module('myApp', ['ngResource','ace']);
          
          function FirstController($scope, $resource){ 
+       
+           
              $scope.supported_langugages = [
                {language : 'java', urlName : 'java' },
                {language : 'js', urlName : 'js' },
@@ -228,7 +230,7 @@
    </head>
    <body ng-controller="FirstController">
       <br>
-      <input type="submit" value="Home" ng-click="./index.html">
+      <input type="submit" value="Home" onclick="window.location='./index.html';" >
       <br>
       
       <div id = "fb-root"></div>
@@ -260,9 +262,10 @@
       </table>
       Your HighScore: {{userStreak}}<br>
       <br>
-      How to Play:<br>
+      How to Play:
+      <p>
       We've loaded a sample method for you in the box below. 
-      <br>
+      <p>
       Step 1: Hit "Try and beat the bot!" and see what happens!<br>
       Step 2: Change the code and try and beat the dumb bot!<br>
       Step 3: Try and beat the smart bot!<br>
