@@ -23,9 +23,7 @@ window.fbAsyncInit = function($scope) {
                           console.log("Score retrieved from Facebook");  
                           var arr = response.data;
                           userStreak = arr[0].score; 
-                          alert("streak=" + userStreak);
-                          $scope.userStreak = arr[0].score;
-                          alert("scope.userStreak=" + $scope.userStreak);
+                          alert("fblogin.js - streak=" + userStreak);
               });
 
       button.onclick = function() {
