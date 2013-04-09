@@ -112,7 +112,7 @@
                     
                     var arr = response.getJSONArray("data");
                     alert("arr=" + arr);            
-                    JSONObject jsonobj = new JSONObject(arr.getJSONObject(0).toString());
+                    var jsonobj = arr.getJSONObject(0).toString();
                     alert("score=" + jsonobj.getString("score"));
                     
 
