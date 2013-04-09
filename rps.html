@@ -112,10 +112,10 @@
                     
                     var arr = jsonres["data"];
                     alert(data);
-                    userStreak = arr[1].score;
+                    userStreak = arr["score"];
                     alert(userStreak);
-                    userStreak = arr[1];
-                    alert("f=" + userStreak);
+                    userStreak = arr[0].score;
+                    alert(userStreak);
                     
         });
          };
