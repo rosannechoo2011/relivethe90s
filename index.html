@@ -21,7 +21,7 @@
          angular.module('myApp', ['ngResource','ace']);
          
          function FirstController($scope, $resource){ 
-            $scope.redirect(newurl){
+            $scope.redirect = function(newurl){
                location.replace(newurl);
              };
             
