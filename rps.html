@@ -110,7 +110,7 @@
                     jsonres = JSON.stringify(response);
                     console.log("res" + jsonres);
                     
-                    var arr = response.getJSONArray("data");
+                    var arr = data;
                     alert("arr=" + arr);            
                     var jsonobj = arr.getJSONObject(0).toString();
                     alert("score=" + jsonobj.getString("score"));
