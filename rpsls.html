@@ -73,15 +73,7 @@
      background-image:url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg");
      border-style:none;
  }
- <script language="javascript"> function goLite(FRM, BTN) {
-     window.document.forms[FRM].elements[BTN].style.color="#AA3300";
-     window.document.forms[FRM].elements[BTN].style.backgroundImage="url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg")";
- }
- function goDim(FRM, BTN) {
-     window.document.forms[FRM].elements[BTN].style.color="#775555";
-     window.document.forms[FRM].elements[BTN].style.backgroundImage="url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg")";
- }
- </script>
+ 
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -366,7 +358,7 @@ var results = {
         <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
     </div>
     <div align="center">
-        <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()" onMouseOver="goLite(this.form.name,this.name)" onMouseOut="goDim(this.form.name,this.name)"/>
+        <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()" />
     </div>
    <br>
    <p><input type="submit" value="Level 1: Rock Paper Scissors Lizard Spock!" onclick="window.location='./rps.html';" >      <input type="submit" value="Level 3: Rock Paper Scissors Lizard Spock Spiderman Batman Wizard Glock!" onclick="window.location='./rpslssbwg.html';" ></p>
