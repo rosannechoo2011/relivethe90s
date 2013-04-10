@@ -211,17 +211,13 @@ var results = {
                    console.log("Getting current score from Facebook");
                   FB.api('/me/scores/', 'get', function(response) {
                     console.log("Score retrieved from Facebook");  
-                    try{
+                    
                     var arr = response["data"];
                     userStreak = arr[0].score; 
                     alert ("fbscore=" + arr[0].score);
-                    console.log("errmsg=" + err.Message);
-                    } catch(err) {
-                      console.log("default set");
-                      userStreak = 0;
-                    }
+
                     $scope.userStreak = userStreak;
-                    alert ("currstreak=" + userStreak);
+                    alert ("fbstreak=" + userStreak);
                     alert ("userwin=" + userWins);
                     
                     if (userStreak < userWins){
@@ -281,7 +277,7 @@ var results = {
    </head>
    <body ng-controller="FirstController">
    
-   	<h1>test1.1</h1>
+   	<h1>test1.2</h1>
       <br>
       <input type="submit" value="Home" onclick="window.location='./index.html';" >
       <br>
