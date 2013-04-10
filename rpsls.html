@@ -298,8 +298,8 @@ var results = {
 "rockscissors" : "crushes" //Rock crushes scissors
 };
          // compare makes a key of the two choices and determines the winner
-         var computer = computerChoice;
-         var user = userChoice.toString().trim().replace("[","").replace("]",""); 
+         var computer = computerChoice.toLowerCase();
+         var user = userChoice.toString().trim().replace("[","").replace("]","").toLowerCase(); 
          console.log("computer move = "+computer);
          console.log("user move"+user);
          var winner = "";
