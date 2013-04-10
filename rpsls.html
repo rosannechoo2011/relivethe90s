@@ -218,25 +218,16 @@ var results = {
                     try{
                     var arr = response["data"];
                     userStreak = arr[0].score;  
-                    } catch(err) {
+                    } catch(TypeError) {
                       console.log("default set");
                       userStreak = 0;
                     }
                     $scope.userStreak = userStreak;
                     
-                    //to remove from app later on, for testing
-                    var scorer = 0;
-                    FB.api('/me/scores/', 'post', { score: scorer }, function(response) {
-                            console.log("Score posted to Facebook");  
-                            console.log("setscore=" + response);
-                            console.log("response=" + JSON.stringify(response));
-                            });
-                    
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
                             console.log("Score posted to Facebook");  
                             console.log("setscore=" + response);
-                            console.log("response=" + JSON.stringify(response));
                             });
                             
                           function postToFeed() {
@@ -253,8 +244,12 @@ var results = {
                                 };
                         
                                 function callback(response) {
+                                 try {
                                   document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-                                }
+                                 } catch (err){
+                                 	console.log("user did not share");
+                                 };
+                                };
                         
                                 FB.ui(obj, callback);
                               }
