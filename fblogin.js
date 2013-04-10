@@ -15,7 +15,7 @@ window.fbAsyncInit = function() {
       var userInfo = document.getElementById('user-info');
       FB.api('/me', function(response) {
         userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
-      + response.id + '/picture">  Welcome, ' + response.name;
+      + response.id + '/picture"> Welcome, ' + response.name;
         button.innerHTML = 'Logout';
       }); 
       button.onclick = function() {
