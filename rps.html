@@ -85,6 +85,12 @@
 #result{
    float:left;
 }
+#text{
+   border:2px solid #456879;
+	border-radius:10px;
+	height: 22px;
+	width: 230px;
+}
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -371,7 +377,7 @@
 
     </div>
     <div id="1" align="left">
-        <textarea ng-model="solution" name="solution" rows="8" cols="50"></textarea>
+        <textarea id="text" ng-model="solution" name="solution" rows="8" cols="50"></textarea>
     </div>
     <div align="left">
         <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()"/>
