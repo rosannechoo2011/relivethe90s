@@ -82,9 +82,7 @@
  #choosebot{
     float:left;
  }
-#results{
-   margin-left:0px;
-}
+
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -338,8 +336,8 @@
       Step 3: Try and beat the smart bot!<br>
       </font></div>
       <br>
-      <div id="div-results" align="left">
-      <table id="results">
+      
+      <table id="results" align="left">
         <thead>
             <tr>
                 <th scope="col">Computer</th>
@@ -356,6 +354,7 @@
       <br>
       <br>
       <br>
+      <div id="highscore" align="left">
       <font face="Rockwell">
       Your HighScore: {{userStreak}}
       </font>
