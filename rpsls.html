@@ -402,18 +402,6 @@ var results = {
       <button id="home" onClick="window.location='./index.html';">Home</button>
       <!--<input type="submit" value="Home" onclick="window.location='./index.html';" >-->
       <br>
-      <div id="div-1">
-        <img src="http://dl.dropbox.com/u/40747801/rpsls-bg.png" class="stretch" alt="" />
-    </div>
-      <br>
-      <font face="Rockwell">
-      <div id = "fb-root"></div>
-      <div id = "user-info"></div>
-      </font>
-      <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
-      <script src = "./fblogin.js"></script>
-      <br>
-      <br>
       <div id="how"><font face="Rockwell">
       How to Play:
       <p>
@@ -424,10 +412,8 @@ var results = {
       Step 3: Try and beat the smart bot!<br>
       </font>
       </div>
-      <br>
-      <br>
       <div id="sheldon">
-      	Sheldon explains it all:<br>
+      	<font face="Rockwell">Sheldon explains it all:</font><br>
       	<iframe width="560" height="315" src="http://www.youtube.com/embed/6EXttdNwJFA" frameborder="0" allowfullscreen></iframe>
       	
 	<br>
@@ -444,6 +430,19 @@ var results = {
 	Rock crushes Scissors<br>
 	</font>
 	</div>
+      <div id="div-1">
+        <img src="http://dl.dropbox.com/u/40747801/rpsls-bg.png" class="stretch" alt="" />
+    </div>
+      <br>
+      <font face="Rockwell">
+      <div id = "fb-root"></div>
+      <div id = "user-info"></div>
+      </font>
+      <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
+      <script src = "./fblogin.js"></script>
+      <br>
+      <br>
+      
       <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
