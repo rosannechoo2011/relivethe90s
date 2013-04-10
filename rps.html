@@ -79,6 +79,12 @@
  #score{
     float:left;
  }
+ #choosebot{
+    float:left;
+ }
+ #results{
+    float:left;
+ }
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -330,10 +336,10 @@
       Step 2: Change the code and try and beat the dumb bot!<br>
       Step 3: Try and beat the smart bot!<br>
       </font></div>
-      <div align="left"> <font face="Rockwell">Choose which bot you want to beat</font><br>
+      <div id="choosebot"> <font face="Rockwell">Choose which bot you want to beat</font><br>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
       </div>
-      <table id="results" align="left">
+      <table id="results">
         <thead>
             <tr>
                 <th scope="col">Computer</th>
