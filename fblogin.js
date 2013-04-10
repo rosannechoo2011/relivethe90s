@@ -14,8 +14,8 @@ window.fbAsyncInit = function() {
       //user is already logged in and connected
       var userInfo = document.getElementById('user-info');
       FB.api('/me', function(response) {
-        userInfo.innerHTML = '<img src="https://graph.facebook.com/' 
-      + response.id + '/picture"> Welcome, ' + response.name;
+        userInfo.innerHTML = '&nbsp;&nbsp;<img src="https://graph.facebook.com/' 
+      + response.id + '/picture">&nbsp;Welcome, ' + response.name;
         button.innerHTML = 'Logout';
       }); 
       button.onclick = function() {
