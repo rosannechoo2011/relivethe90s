@@ -125,6 +125,8 @@
 	top:1px;
 }
       </style>
+      <table border = 8 style="background-colour:#FFFFFF">
+      	<th>Player</th><th>Streak</th>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
       <script src="jquery.min.js"></script>
@@ -159,11 +161,10 @@
                       
                       var score = arr[i].score;
                       
-                      board = board + "<tr><td>" + player + "</td><td>" + score + "</td></tr>";
+                      "<tr><td>" + player + "</td><td>" + score + "</td></tr>";
                       
                     }
                     var leaderboardInfo = document.getElementById("leaderboard");
-                     leaderboardInfo.innerHTML = '<table border = \'8\' style=\'background-colour:#FFFFFF\'><th>Player</th><th>Streak</th>'+ board + '</table>';
                     
                   });
 
@@ -181,6 +182,7 @@
          }
            
       </script>
+      </table>
    </head>
    <body ng-controller="FirstController">
       <br>
