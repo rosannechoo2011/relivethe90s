@@ -134,10 +134,9 @@
                                  );
          var userWins = 0;
          var computerWins = 0;
+         var userStreak = 0;
              $scope.verify = function(){
-               var userStreak = 0;
-         
-         
+
                data = {solution: $scope.solution, tests: $scope.tests}
                jsonrequest = btoa(JSON.stringify(data));
          
@@ -180,8 +179,7 @@
                // Rock, Paper, Scissors, Lizard, Spock
          
          var choices = ["rock","paper","scissors","lizard","spock","spiderman","batman","wizard","glock"]; // you could comment out the last two for the standard game.
-         var userWins = 0;
-         var computerWins = 0;
+
          var results = {
          "scissorspaper" : "cuts",//Scissors cuts paper
          "paperrock" : "covers", //Paper covers rock
@@ -223,8 +221,8 @@
          // compare makes a key of the two choices and determines the winner
          var computer = computerChoice;
          var user = userChoice.toString().trim().replace("[","").replace("]",""); 
-         alert(computer);
-         alert(user);
+         console.log("comp move = " + computer);
+         console.log("usermove="+user);
          var winner = "";
          var compare = function(user,computer){
          if (user === computer){
@@ -254,27 +252,14 @@
                    console.log("Getting current score from Facebook");
                   FB.api('/me/scores/', 'get', function(response) {
                     console.log("Score retrieved from Facebook");  
-                    try{
                     var arr = response["data"];
                     userStreak = arr[0].score;  
-                    } catch(err) {
-                      console.log("default set");
-                      userStreak = 0;
-                    }
                     $scope.userStreak = userStreak;
-                    
-                    //to remove from app later on, for testing
-                    var scorer = 0;
-                    FB.api('/me/scores/', 'post', { score: scorer }, function(response) {
-                            console.log("Score posted to Facebook");  
-                            console.log("setscore=" + response);
-                            console.log("response=" + JSON.stringify(response));
-                            });
+                   
                     
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
                             console.log("Score posted to Facebook");  
-                            console.log("setscore=" + response);
                             console.log("response=" + JSON.stringify(response));
                             });
                             
@@ -292,7 +277,11 @@
                                 };
                         
                                 function callback(response) {
+                                   try {
                                   document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                   } catch (err){
+                                      console.log("user did not share");
+                                   }
                                 }
                         
                                 FB.ui(obj, callback);
