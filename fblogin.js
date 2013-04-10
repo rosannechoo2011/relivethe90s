@@ -4,6 +4,8 @@ window.fbAsyncInit = function() {
         cookie: true,
         xfbml: true,
         oauth: true});
+        
+  var setScoreRecord = false;
 
   function updateButton(response) {
     var button = document.getElementById('fb-auth');
@@ -26,6 +28,11 @@ window.fbAsyncInit = function() {
       //user is not connected to your app or logged out
       button.innerHTML = 'Login with Facebook';
       button.onclick = function() {
+        if (response.status === 'not_authorized') {
+            // the user is logged in to Facebook, 
+            // but has not authenticated your app
+            setScoreRecord = true;
+          } 
         FB.login(function(response) {
       if (response.authResponse) {
             FB.api('/me', function(response) {
@@ -34,7 +41,15 @@ window.fbAsyncInit = function() {
                 '<img src="https://graph.facebook.com/' 
             + response.id + '/picture" style="margin-right:5px"/>' 
             + response.name;
-        });    
+        });  
+        
+        if (setScoreRecord){
+            var defscore = 0;
+           FB.api('/me/scores/', 'post', { score: defscore }, function(response) {
+                            console.log("default score set");  
+                            console.log("setscore=" + response);
+                            });
+        }
           } else {
             //user cancelled login or did not grant authorization
           }
