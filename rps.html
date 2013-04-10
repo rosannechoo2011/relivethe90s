@@ -152,7 +152,7 @@
                           "js":{"solution":"a=1;\nb=7;",
                                "tests":"assert_equal(1,a);\nassert_equal(2,b);"},
                          
-                         "java":{"solution":"public String nextMove(){\n\treturn \"paper\";\n}",
+                         "java":{"solution":"public String nextMove(){\n\treturn \"scissors\";\n}",
                                  "tests":"String userChoice = nextMove(); assertEquals(1, userChoice); ",
                          }
                  },
@@ -173,9 +173,9 @@
                                  );
          var userWins = 0;
          var computerWins = 0;
+          var userStreak = 0;
              $scope.verify = function(){
-               var userStreak = 0;
-         
+     
          
                data = {solution: $scope.solution, tests: $scope.tests}
                jsonrequest = btoa(JSON.stringify(data));
@@ -214,8 +214,6 @@
          
          var choices = ["rock","paper","scissors"]; // you could comment out the last two for the standard game.
          
-
-
          var results = {
          "scissorspaper" : "cuts",//Scissors cuts paper
          "paperrock" : "covers", //Paper covers rock
@@ -224,8 +222,8 @@
          // compare makes a key of the two choices and determines the winner
          var computer = computerChoice;
          var user = userChoice.toString().trim().replace("[","").replace("]",""); 
-         alert(computer);
-         alert(user);
+         console.log("comp move=" + computer);
+         console.log("usermove=" + user);
          var winner = "";
          var compare = function(user,computer){
          if (user === computer){
@@ -264,18 +262,10 @@
                     }
                     $scope.userStreak = userStreak;
                     
-                    //to remove from app later on, for testing
-                    var scorer = 0;
-                    FB.api('/me/scores/', 'post', { score: scorer }, function(response) {
-                            console.log("Score posted to Facebook");  
-                            console.log("setscore=" + response);
-                            console.log("response=" + JSON.stringify(response));
-                            });
                     
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
                             console.log("Score posted to Facebook");  
-                            console.log("setscore=" + response);
                             console.log("response=" + JSON.stringify(response));
                             });
                             
@@ -292,19 +282,16 @@
                                   description: 'Think you can beat my score? Come try this game out!'
                                 };
                                  
-                                 //try{
-                                //function callback(response) {
-                                   
-                                  //document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
-                                   
-                                //}
+
+                               function callback(response) {
+                                   try{
+                                  document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                   } catch (err){
+                                       console.log("user didnt share");
+                                    }
+                                }
                         
-                                FB.ui(obj);
-                                //.FB.ui(obj,callback);
-                                    //} catch (err){
-                                      // console.log("user didnt share");
-                                    //}
-                              
+                                FB.ui(obj,callback);
                               }
                       postToFeed();
 
