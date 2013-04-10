@@ -309,7 +309,6 @@
       <script src = "./fblogin.js"></script>
       <p></p>
       <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
-        <br>
         <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
       <br>
@@ -323,9 +322,7 @@
       Outcome: {{outcome}}</br>
       </font>
         <br>
-        <br>
-        
-      <font face="Rockwell">Choose which bot you want to beat</font><br>
+      <font face="Rockwell">Choose which bot you want to beat</font>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
       <br>
       </div>
@@ -338,9 +335,6 @@
       Step 2: Change the code and try and beat the dumb bot!<br>
       Step 3: Try and beat the smart bot!<br>
       </font></div>
-      <br>
-      
-      <br>
       <table id="results" align="left">
         <thead>
             <tr>
