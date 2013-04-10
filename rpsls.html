@@ -193,15 +193,15 @@ var results = {
          winner = "Draw";
          }
          else if (results[user+""+computer] !== undefined){ // user beats computer
-         userWins++;
-         msg = user+" "+results[user+""+computer]+" "+computer;
-         winner ="Congrats, you beat the bot!";
+	         userWins++;
+	         msg = user+" "+results[user+""+computer]+" "+computer;
+	         winner ="Congrats, you beat the bot!";
          } else { //computer beats user
-         computerWins++;
-         userWins = 0;
-         msg = computer+" "+results[computer+""+user]+" "+user;
-         winner = "Try again, this bot is good (;";
-         }
+	         computerWins++;
+	         userWins = 0;
+	         msg = computer+" "+results[computer+""+user]+" "+user;
+	         winner = "Try again, this bot is good (;";
+         };
          };
                   compare(user, computer);
                   $scope.computerMove = computer;
@@ -217,12 +217,16 @@ var results = {
                     console.log("Score retrieved from Facebook");  
                     try{
                     var arr = response["data"];
-                    userStreak = arr[0].score;  
-                    } catch(TypeError) {
+                    userStreak = arr[0].score; 
+                    alert ("fbscore=" + arr[0].score);
+                    alert ("errmsg=" + err.Message);
+                    } catch(err) {
                       console.log("default set");
                       userStreak = 0;
                     }
                     $scope.userStreak = userStreak;
+                    alert ("streak=" + userStreak);
+                    alert ("user=" + userWins);
                     
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
@@ -280,6 +284,8 @@ var results = {
       </script>
    </head>
    <body ng-controller="FirstController">
+   
+   	<h1>test1.0</h1>
       <br>
       <input type="submit" value="Home" onclick="window.location='./index.html';" >
       <br>
