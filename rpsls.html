@@ -214,7 +214,7 @@ var results = {
                     
                     var arr = response["data"];
                     userStreak = arr[0].score; 
-                    alert ("fbscore=" + arr[0].score);
+                    console.log(JSON.stringify(response));
 
                     $scope.userStreak = userStreak;
                     alert ("fbstreak=" + userStreak);
