@@ -82,9 +82,7 @@
  #choosebot{
     float:left;
  }
- #results{
-    float:left;
- }
+
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -340,6 +338,7 @@
       <div id="choosebot"> <font face="Rockwell">Choose which bot you want to beat</font><br>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
       </div>
+      <br>
       <table id="results" align="left">
         <thead>
             <tr>
