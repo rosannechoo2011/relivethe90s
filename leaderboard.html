@@ -124,6 +124,9 @@
 	position:relative;
 	top:1px;
 }
+#leader{
+	background-color:#FFFFFF;
+}
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -163,7 +166,7 @@
                       
                     }
                     var leaderboardInfo = document.getElementById("leaderboard");
-                     leaderboardInfo.innerHTML = '<table border = \'8\' style=\'background-colour:#FFFFFF\'><th>Player</th><th>Streak</th>'+ board + '</table>';
+                     leaderboardInfo.innerHTML = '<table id=\'leader\' border = \'8\'><th>Player</th><th>Streak</th>'+ board + '</table>';
                     
                   });
 
