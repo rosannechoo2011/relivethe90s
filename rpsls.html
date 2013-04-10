@@ -124,20 +124,18 @@
                                      {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
                                         }
                                  );
-         var userWins = 0;
-         var computerWins = 0;
-             $scope.verify = function(){
-               var userStreak = 0;
-         
-         
+	         var userWins = 0;
+	         var computerWins = 0;
+	         var userStreak = 0;
+	         
+             $scope.verify = function(){        
                data = {solution: $scope.solution, tests: $scope.tests}
                jsonrequest = btoa(JSON.stringify(data));
          
                $scope.status = "Verifying"
                $scope.VerifierModel.get({'language':$scope.language,
                                          'jsonrequest':jsonrequest},
-                   
-                  
+
                      function(response) { 
                        $scope.result = response;
                        var arr = response["results"];
@@ -167,8 +165,6 @@
 			      // Rock, Paper, Scissors, Lizard, Spock
 
 var choices = ["rock","paper","scissors","lizard","spock"]; // you could comment out the last two for the standard game.
-var userWins = 0;
-var computerWins = 0;
 var results = {
 "scissorspaper" : "cuts",//Scissors cuts paper
 "paperrock" : "covers", //Paper covers rock
@@ -219,14 +215,14 @@ var results = {
                     var arr = response["data"];
                     userStreak = arr[0].score; 
                     alert ("fbscore=" + arr[0].score);
-                    alert ("errmsg=" + err.Message);
+                    console.log("errmsg=" + err.Message);
                     } catch(err) {
                       console.log("default set");
                       userStreak = 0;
                     }
                     $scope.userStreak = userStreak;
-                    alert ("streak=" + userStreak);
-                    alert ("user=" + userWins);
+                    alert ("currstreak=" + userStreak);
+                    alert ("userwin=" + userWins);
                     
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
@@ -285,7 +281,7 @@ var results = {
    </head>
    <body ng-controller="FirstController">
    
-   	<h1>test1.0</h1>
+   	<h1>test1.1</h1>
       <br>
       <input type="submit" value="Home" onclick="window.location='./index.html';" >
       <br>
