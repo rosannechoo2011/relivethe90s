@@ -278,8 +278,8 @@
          "rockscissors" : "crushes" //Rock crushes scissors
          };
          // compare makes a key of the two choices and determines the winner
-         var computer = computerChoice;
-         var user = userChoice.toString().trim().replace("[","").replace("]",""); 
+         var computer = computerChoice.toLowerCase();
+         var user = userChoice.toString().trim().replace("[","").replace("]","").toLowerCase(); 
          console.log("comp move=" + computer);
          console.log("usermove=" + user);
          var winner = "";
