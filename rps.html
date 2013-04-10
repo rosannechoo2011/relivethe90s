@@ -74,7 +74,10 @@
      border-style:none;
  }
  #how{
-    margin-left:60px;
+    margin-left:50%;
+ }
+ #score{
+    float:left;
  }
       </style>
       <script src="angular.min.js"></script>
@@ -301,7 +304,7 @@
       <p><button id="fb-auth">Login</button><input type="submit" value="Share this game with your friends!" ng-click="share()"></p>
       <script src = "./fblogin.js"></script>
       <p></p>
-      <div align="left"> <font face="Rockwell">Choose which language you want to code in:</font> 
+      <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <br>
         <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
