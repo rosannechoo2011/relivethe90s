@@ -485,25 +485,25 @@
       <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p>
       <script src = "./fblogin.js"></script>
       
-      <div id="score" align="left"> <font face="Rockwell">Choose which language you want to code in:</font> 
+      <div id="score" align="left"> <font face="Rockwell">&nbsp;&nbsp;Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
-      <font face="Rockwell">Choose which bot you want to beat</font>
+      <font face="Rockwell">&nbsp;&nbsp;Choose which bot you want to beat</font>
       <select id="bot" ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
       <br>
       <br>
      <font face="Rockwell">    
-      Score: {{userScore}}<br>
-      Status: {{status}}<br>
+      &nbsp;&nbsp;Score: {{userScore}}<br>
+      &nbsp;&nbsp;Status: {{status}}<br>
       <!--Result:{{result}}--> 
       <br>
-      Winner: {{winner}}</br>
-      Outcome: {{outcome}}</br>
+     &nbsp;&nbsp; Winner: {{winner}}</br>
+     &nbsp;&nbsp; Outcome: {{outcome}}</br>
       </font>
      <!-- <font face="Rockwell">Choose which bot you want to beat</font>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>-->
       </div>
-      <br>
+      <br>&nbsp;&nbsp;
       <div id="result" >
       <table id="results">
         <thead>
@@ -524,18 +524,18 @@
       <br>
       <div id="highscore" align="left">
       <font face="Rockwell">
-      Your HighScore: {{userStreak}}
+      &nbsp;&nbsp;Your HighScore: {{userStreak}}
       </font>
       </div>
       <br>
-      <div style="text-align:left"> <font face="Rockwell"> Player Solution:</font>
+      <div style="text-align:left"> <font face="Rockwell"> &nbsp;&nbsp;Player Solution:</font>
 
     </div>
     <div id="1" align="left">
         <textarea id="text" ng-model="solution" name="solution" rows="8" cols="50"></textarea>
     </div>
     <div align="left">
-        <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()"/>
+        &nbsp;&nbsp;<input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()"/>
     </div>
     <br>
    <button id="level1" onclick="window.location='./rps.html';">Level 1: Rock Paper Scissors!</button><br>
