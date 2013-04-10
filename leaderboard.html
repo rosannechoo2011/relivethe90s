@@ -93,29 +93,7 @@
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
 	background-color:#17d2eb;
 }
-#leaderb:active {
-	position:relative;
-	top:1px;
-}
- #leader {
-     font-family:"courier";
-     border-collapse: collapse;
- }
- #leader td, #leader th {
-     border: 1px solid black;
- }
- #leader tr:first-child th {
-     border-top: 0;
- }
- #leader tr:last-child td {
-     border-bottom: 0;
- }
- #leader tr td:first-child, #leader tr th:first-child {
-     border-left: 0;
- }
- #leader tr td:last-child, #leader tr th:last-child {
-     border-right: 0;
- }
+
  #home {
 	-moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
 	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
@@ -185,7 +163,7 @@
                       
                     }
                     var leaderboardInfo = document.getElementById("leaderboard");
-                    leaderboardInfo.innerHTML = '<table id="leader" align=center border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
+                    leaderboardInfo.innerHTML = '<table align=center border = \'1\'><th>Player</th><th>Streak</th>'+ board + '</table>';
                     
                   });
 
@@ -220,7 +198,7 @@
       <script src = "./fblogin.js"></script>
       <br>
       <font face="Rockwell" size=5px>Leaderboard:</font><br>
-      <button id="leaderb" ng-click="getLeaderboard()">Get Leaderboard</button></p>
+      <div id="leaderboard"><button id="leaderb" ng-click="getLeaderboard()">Get Leaderboard!</button></p></div>
       
       <!--crazy egg-->
 <script type="text/javascript">
