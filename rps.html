@@ -28,11 +28,18 @@
  #div-1 {
      width: 100%;
      height: 100%;
-     position: fixed;
+     position: relative;
      left: 0px;
      top: 0px;
      z-index: -1;
      /* Ensure div tag stays behind content; -999 might work, too. */
+ }
+ #div-1a{
+     width: 100%;
+     height: 100%;
+     position: absolute;
+     right: 2px;
+     top: 0px;
  }
  .stretch {
      width:100%;
@@ -384,6 +391,9 @@
       <br>
       <div id="div-1">
         <img src="http://dl.dropbox.com/u/40747801/rps-bg.png" class="stretch" alt="" />
+    </div>
+    <div id="div-1a">
+    	<img src="http://dl.dropbox.com/u/40747801/how.png"/>
     </div>
       <br>
       <font face="Rockwell">
