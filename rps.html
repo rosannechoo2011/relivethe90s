@@ -420,7 +420,8 @@
       </div> <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
       <script src = "./fblogin.js"></script>
       <br>
-      <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
+      <br>
+      <div id="score" align="left"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
       <br>
