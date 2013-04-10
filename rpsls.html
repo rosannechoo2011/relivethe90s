@@ -82,6 +82,9 @@
  #score{
     float:left;
  }
+ #lang{
+ 	float:left;
+ }
  #choosebot{
     float:left;
  }
@@ -428,6 +431,7 @@ var results = {
       	<iframe width="560" height="315" src="http://www.youtube.com/embed/6EXttdNwJFA" frameborder="0" allowfullscreen></iframe>
       	
 	<br>
+	<font face="Rockwell">
 	Scissors cuts Paper<br>
 	Paper covers Rock<br>
 	Rock crushes Lizard<br>
@@ -438,6 +442,7 @@ var results = {
 	Paper disproves Spock<br>
 	Spock vaporizes Rock<br>
 	Rock crushes Scissors<br>
+	</font>
 	</div>
       <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
