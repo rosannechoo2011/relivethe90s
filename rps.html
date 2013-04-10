@@ -76,7 +76,10 @@
  #how{
     margin-left:50%;
  }
- #fb-auth, #share{
+ #fb-auth{
+ 	float:left;
+ }
+ #share{
  	float:left;
  }
  #score{
@@ -421,8 +424,7 @@
        <br>
       Step 3: Try and beat the smart bot!<br>
       </font>
-      </div>
-      <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
+      </div> <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
       <script src = "./fblogin.js"></script>
       <br>
       <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
