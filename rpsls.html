@@ -105,7 +105,7 @@
                           "js":{"solution":"a=1;\nb=7;",
                                "tests":"assert_equal(1,a);\nassert_equal(2,b);"},
                          
-                         "java":{"solution":"public String nextMove(){\n\treturn \"paper\";\n}",
+                         "java":{"solution":"public String nextMove(){\n\treturn \"scissors\";\n}",
                                  "tests":"String userChoice = nextMove(); assertEquals(1, userChoice); ",
                          }
                  },
@@ -180,8 +180,8 @@ var results = {
          // compare makes a key of the two choices and determines the winner
          var computer = computerChoice;
          var user = userChoice.toString().trim().replace("[","").replace("]",""); 
-         alert(computer);
-         alert(user);
+         console.log("computer move = "+computer);
+         console.log("user move"+user);
          var winner = "";
          var compare = function(user,computer){
          if (user === computer){
@@ -217,8 +217,8 @@ var results = {
                     console.log(JSON.stringify(response));
 
                     $scope.userStreak = userStreak;
-                    alert ("fbstreak=" + userStreak);
-                    alert ("userwin=" + userWins);
+                    console.log("fbstreak=" + userStreak);
+                    console.log("userwin=" + userWins);
                     
                     if (userStreak < userWins){
                       FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
