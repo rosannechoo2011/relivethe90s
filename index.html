@@ -85,7 +85,7 @@
     right: 79.5%;
 }
 
-#fb-auth{
+#fb-auth, #share{
    -moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
 	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
 	box-shadow:inset 0px 0px 20px -6px #17d2eb;
@@ -106,13 +106,13 @@
 	text-decoration:none;
 	text-shadow:1px 1px 1px #17d2eb;
 }
-#fb-auth:hover {
+#fb-auth, #share:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
 	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
 	background-color:#17d2eb;
 }
-#fb-auth:active {
+#fb-auth, #share:active {
 	position:relative;
 	top:1px;
 }           
@@ -145,7 +145,8 @@
   <font face="courier new" size=4px><div id="fb-root"></div>
   <div id="user-info"></div></font>
   <p><button id="fb-auth">Login</button></p>
-  <input type ="submit" value ="Share this game with your friends!" ng-click="share()"/><br>
+  <p><button id="share" ng-click="share()">Share this game with your friends!</button></p>
+  <!--<input type ="submit" value ="Share this game with your friends!" ng-click="share()"/><br>-->
    <script src = "./fblogin.js"></script>
 </div>
 
