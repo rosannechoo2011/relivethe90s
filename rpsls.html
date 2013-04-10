@@ -164,6 +164,33 @@
 	margin: 0;
 	text: #FFFFFF;
 }
+#level1, #level3{
+   -moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #17d2eb;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Rockwell;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#level1, #level3:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -448,9 +475,8 @@ var results = {
     <div align="left">
         <input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()"/>
     </div>
-   <p><button id="level2" onclick="window.location='./rpsls.html';">Level 2: Rock Paper Scissors Lizard Spock!</button></p>
-   <br>
-   <p><input type="submit" value="Level 1: Rock Paper Scissors!" onclick="window.location='./rps.html';" >      <input type="submit" value="Level 3: Rock Paper Scissors Lizard Spock Spiderman Batman Wizard Glock!" onclick="window.location='./rpslssbwg.html';" ></p>
+   <p><button id="level1" onclick="window.location='./rps.html';"></button><button id="level3" onclick="window.location='./rpslssbwg.html';"></button></p>
+   <!--<p><input type="submit" value="Level 1: Rock Paper Scissors!" onclick="window.location='./rps.html';" >      <input type="submit" value="Level 3: Rock Paper Scissors Lizard Spock Spiderman Batman Wizard Glock!" onclick="window.location='./rpslssbwg.html';" ></p>-->
     <div id="1a" align="center">
     <span ng-init="load_example_code()"></span>
      </div> 
