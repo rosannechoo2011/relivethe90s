@@ -385,7 +385,6 @@
       <div id="div-1">
         <img src="http://dl.dropbox.com/u/40747801/rps-bg.png" class="stretch" alt="" />
     </div>
-      <br>
       <font face="Rockwell">
       <div id = "fb-root"></div>
       <div id = "user-info"></div>
@@ -393,10 +392,8 @@
       <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
       <script src = "./fblogin.js"></script>
       <br>
-      <br>
       <div id="score" align="left"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
-      <br>
       <br>
       <font face="Rockwell">Choose which bot you want to beat</font>
       <select id="bot" ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
@@ -410,11 +407,9 @@
       Winner: {{winner}}</br>
       Outcome: {{outcome}}</br>
       </font>
-        <br>
      <!-- <font face="Rockwell">Choose which bot you want to beat</font>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>-->
       </div>
-      <br>
       <br>
       <div id="result" >
       <table id="results">
@@ -432,7 +427,6 @@
         </tbody>
     </table>
     </div>
-      <br>
       <br>
       <br>
       <div id="highscore" align="left">
