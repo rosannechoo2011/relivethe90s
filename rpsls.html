@@ -399,42 +399,42 @@ var results = {
     <div id="div-1">
         <img src="http://dl.dropbox.com/u/40747801/rpsls-bg.png" class="stretch" alt="" />
     </div>
-      &nbsp;<button id="home" onClick="window.location='./index.html';">Home</button>
+      &nbsp;&nbsp;<button id="home" onClick="window.location='./index.html';">Home</button>
       <br>
       <br>
       <font face="Rockwell">
       <div id = "fb-root"></div>
       <div id = "user-info"></div>
       </font>
-      <p>&nbsp;<button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
+      <p>&nbsp;&nbsp;<button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
       <script src = "./fblogin.js"></script>
       <br>
       <div="sheldon" >
       <iframe width="460" height="285" align="right" src="http://www.youtube.com/embed/6EXttdNwJFA" frameborder="0" allowfullscreen></iframe></div>
-      <div id="score"> <font face="Rockwell">&nbsp;Choose which language you want to code in:</font> 
+      <div id="score"> <font face="Rockwell">&nbsp;&nbsp;Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
       <br>
-      <font face="Rockwell">&nbsp;Choose which bot you want to beat</font>
+      <font face="Rockwell">&nbsp;&nbsp;Choose which bot you want to beat</font>
       <select id="bot" ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
       <br>
       <br>
      <font face="Rockwell">    
-      &nbsp;Score: {{userScore}}<br>
-      &nbsp;Status: {{status}}<br>
+     &nbsp; &nbsp;Score: {{userScore}}<br>
+      &nbsp;&nbsp;Status: {{status}}<br>
       <!--Result:{{result}}--> 
       <br>
-     &nbsp; Winner: {{winner}}</br>
-     &nbsp; Outcome: {{outcome}}</br>
+     &nbsp;&nbsp; Winner: {{winner}}</br>
+     &nbsp;&nbsp; Outcome: {{outcome}}</br>
       </font>
       </div>
-      <br>&nbsp;
+      <br>&nbsp;&nbsp;
       <div id="result" >
       <table id="results">
         <thead>
             <tr>
-                <th scope="col">&nbsp;Computer</th>
-                <th scope="col">&nbsp;Player</th>
+                <th scope="col">&nbsp;&nbsp;Computer</th>
+                <th scope="col">&nbsp;&nbsp;Player</th>
             </tr>
         </thead>
         <tbody>
@@ -449,11 +449,11 @@ var results = {
       <br>
       <div id="highscore" align="left">
       <font face="Rockwell">
-      &nbsp;Your HighScore: {{userStreak}}
+      &nbsp;&nbsp;Your HighScore: {{userStreak}}
       </font>
       </div>
       <br>
-      <div style="text-align:left"> <font face="Rockwell"> &nbsp;Player Solution:</font>
+      <div style="text-align:left"> <font face="Rockwell"> &nbsp;&nbsp;Player Solution:</font>
     </div>
     <div id="1" align="left">
         <textarea id="text" ng-model="solution" name="solution" rows="8" cols="50"></textarea>
