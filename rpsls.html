@@ -76,6 +76,9 @@
  #how{
     margin-left:50%;
  }
+ #sheldon{
+ 	margin-left:50%;
+ }
  #score{
     float:left;
  }
@@ -397,7 +400,7 @@ var results = {
       <!--<input type="submit" value="Home" onclick="window.location='./index.html';" >-->
       <br>
       <div id="div-1">
-        <img src="http://dl.dropbox.com/u/40747801/rps-bg.png" class="stretch" alt="" />
+        <img src="http://dl.dropbox.com/u/40747801/rpsls-bg.png" class="stretch" alt="" />
     </div>
       <br>
       <font face="Rockwell">
@@ -406,7 +409,36 @@ var results = {
       </font>
       <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
       <script src = "./fblogin.js"></script>
-      <p></p>
+      <br>
+      <br>
+      <div id="how"><font face="Rockwell">
+      How to Play:
+      <p>
+      We've loaded a sample method for you in the box below. 
+      <p>
+      Step 1: Hit "Try and beat the bot!" and see what happens!<br>
+      Step 2: Change the code and try and beat the dumb bot!<br>
+      Step 3: Try and beat the smart bot!<br>
+      </font>
+      </div>
+      <br>
+      <br>
+      <div id="sheldon">
+      	Sheldon explains it all:<br>
+      	<iframe width="560" height="315" src="http://www.youtube.com/embed/6EXttdNwJFA" frameborder="0" allowfullscreen></iframe>
+      	
+	<br>
+	Scissors cuts Paper<br>
+	Paper covers Rock<br>
+	Rock crushes Lizard<br>
+	Lizard poisons Spock<br>
+	Spock smashes Scissors<br>
+	Scissors decapitates Lizard<br>
+	Lizard eats Paper<br>
+	Paper disproves Spock<br>
+	Spock vaporizes Rock<br>
+	Rock crushes Scissors<br>
+	</div>
       <div id="score"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
       <br>
@@ -426,18 +458,6 @@ var results = {
         <br>
      <!-- <font face="Rockwell">Choose which bot you want to beat</font>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>-->
-      </div>
-      <br>
-      <br>
-      <div id="how"><font face="Rockwell">
-      How to Play:
-      <p>
-      We've loaded a sample method for you in the box below. 
-      <p>
-      Step 1: Hit "Try and beat the bot!" and see what happens!<br>
-      Step 2: Change the code and try and beat the dumb bot!<br>
-      Step 3: Try and beat the smart bot!<br>
-      </font>
       </div>
       <br>
       <br>
