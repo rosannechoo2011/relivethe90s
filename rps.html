@@ -291,7 +291,7 @@
       <br>
       
       <div id="div-1">
-        <img src="http://dl.dropbox.com/u/40747801/blue-vintage-background-19820-background-patterns-others.jpg" class="stretch" alt="" />
+        <img src="http://dl.dropbox.com/u/40747801/rps-bg.png" class="stretch" alt="" />
     </div>
       <br>
       <div id = "fb-root"></div>
@@ -302,10 +302,21 @@
       <div align="left"> <font face="Rockwell">Choose which language you want to code in:</font> 
         <br>
         <select ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
-    </div>
-    <br>
-    <br>
-    <div align="center"><font face="Rockwell">
+      <br>
+      <br>
+     <font face="Rockwell">    
+      Score: {{userScore}}<br>
+      Status: {{status}}<br>
+      Result:{{result}} 
+      <br>
+      <br>
+      Winner: {{winner}}</br>
+      Outcome: {{outcome}}</br>
+      </font>
+        <br>
+        <br>
+      </div>
+      <div align="center"><font face="Rockwell">
       How to Play:
       <p>
       We've loaded a sample method for you in the box below. 
@@ -316,21 +327,6 @@
       </font></div>
       <div align="left"> <font face="Rockwell">Choose which bot you want to beat</font><br>
       <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
-      </div>
-      <br>
-      <br>
-      <div align="left"> <font face="Rockwell">    
-      Score: {{userScore}}<br>
-      Status: {{status}}<br>
-      Result:{{result}}
-      
-      <br>
-      <br>
-      Winner: {{winner}}</br>
-      Outcome: {{outcome}}</br>
-      </font>
-        <br>
-        <br>
       </div>
       <table id="results" align="left">
         <thead>
