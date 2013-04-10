@@ -324,6 +324,10 @@
       </font>
         <br>
         <br>
+        
+      <font face="Rockwell">Choose which bot you want to beat</font><br>
+      <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
+      <br>
       </div>
       <div id="how"><font face="Rockwell">
       How to Play:
@@ -335,9 +339,7 @@
       Step 3: Try and beat the smart bot!<br>
       </font></div>
       <br>
-      <div id="choosebot" align="left"> <font face="Rockwell">Choose which bot you want to beat</font><br>
-      <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
-      </div>
+      
       <br>
       <table id="results" align="left">
         <thead>
