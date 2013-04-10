@@ -82,7 +82,9 @@
  #choosebot{
     float:left;
  }
-
+#div-results{
+   float:left;
+}
       </style>
       <script src="angular.min.js"></script>
       <script src="angular-resource.min.js"></script>
@@ -335,6 +337,8 @@
       Step 2: Change the code and try and beat the dumb bot!<br>
       Step 3: Try and beat the smart bot!<br>
       </font></div>
+      <br>
+      <div id="div-results">
       <table id="results" align="left">
         <thead>
             <tr>
@@ -352,7 +356,7 @@
       <br>
       <br>
       <br>
-      <div align="left"> <font face="Rockwell">
+      <font face="Rockwell">
       Your HighScore: {{userStreak}}
       </font>
       </div>
