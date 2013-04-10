@@ -34,10 +34,10 @@
      z-index: -1;
      /* Ensure div tag stays behind content; -999 might work, too. */
  }
- /*.stretch {
+.stretch {
      width:100%;
      height:100%;
- }*/
+ }
  #results {
      font-family:"courier";
      border-collapse: collapse;
@@ -397,7 +397,7 @@ var results = {
    </head>
    <body ng-controller="FirstController">
     <div id="div-1">
-        <img src="http://dl.dropbox.com/u/40747801/rpsls-bg.png"  alt="" />
+        <img src="http://dl.dropbox.com/u/40747801/rpsls-bg.png" class="stretch" alt="" />
     </div>
       <button id="home" onClick="window.location='./index.html';">Home</button>
       <br>
