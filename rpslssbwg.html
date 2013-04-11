@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+   <head>
+       <meta property="fb:admins" content="671637679" />
+   <meta property="fb:app_id" content="136675969847991" /> 
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-39869790-1', 'github.com');
+      ga('send', 'pageview');
+    
+    </script>
+   
+      <title>RPSLSSBWG: Game On!</title>
+      <style type='text/css'>
+          /* MUST HAVE WIDTH/HEIGHT */
+ .ace-editor {
+     width:100%;
+     height:200px;
+ }
+ #contents {
+     width:50%;
+     height:50%;
+     position:absolute;
+     top:0;
+ }
+ #div-1 {
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     left: 0px;
+     top: 0px;
+     z-index: -1;
+     /* Ensure div tag stays behind content; -999 might work, too. */
+ }
+ .stretch {
+     width:100%;
+     height:100%;
+ }
+ #results {
+     font-family:"courier";
+     border-collapse: collapse;
+ }
+ #results td, #results th {
+     border: 1px solid black;
+ }
+ #results tr:first-child th {
+     border-top: 0;
+ }
+ #results tr:last-child td {
+     border-bottom: 0;
+ }
+ #results tr td:first-child, #results tr th:first-child {
+     border-left: 0;
+ }
+ #results tr td:last-child, #results tr th:last-child {
+     border-right: 0;
+ }
+ #1 {
+     position: relative;
+ }
+ #1a {
+     position:absolute;
+ }
+ input.groovybutton {
+     font-size:12px;
+     font-family:Courier;
+     font-weight:bold;
+     color:#775555;
+     width:154px;
+     height:19px;
+     background-image:url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg");
+     border-style:none;
+ }
+ <script language="javascript"> function goLite(FRM, BTN) {
+     window.document.forms[FRM].elements[BTN].style.color="#AA3300";
+     window.document.forms[FRM].elements[BTN].style.backgroundImage="url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg")";
+ }
+ function goDim(FRM, BTN) {
+     window.document.forms[FRM].elements[BTN].style.color="#775555";
+     window.document.forms[FRM].elements[BTN].style.backgroundImage="url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg")";
+ }
+ #results {
+     font-family:"courier";
+     border-collapse: collapse;
+ }
+ #results td, #results th {
+     border: 1px solid black;
+ }
+ #results tr:first-child th {
+     border-top: 0;
+ }
+ #results tr:last-child td {
+     border-bottom: 0;
+ }
+ #results tr td:first-child, #results tr th:first-child {
+     border-left: 0;
+ }
+ #results tr td:last-child, #results tr th:last-child {
+     border-right: 0;
+ }
+ #1 {
+     position: relative;
+ }
+ #1a {
+     position:absolute;
+ }
+ input.groovybutton {
+     font-size:12px;
+     font-family:Courier;
+     font-weight:bold;
+     color:#775555;
+     width:154px;
+     height:19px;
+     background-image:url("http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg");
+     border-style:none;
+ }
+
+
+/*
+ #score{
+    float:left;
+ }
+ #choosebot{
+    float:left;
+ }
+#result{
+   float:left;
+}
+#home{
+   float:left;  
+}*/
+#text{
+   border:2px solid #17d2eb;
+	border-radius:10px;
+	height: 110px;
+	width: 230px;
+}
+#home {
+	-moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Courier New;
+	font-size:17px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#home:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
+#home:active {
+	position:relative;
+	top:1px;
+}
+#fb-auth, #share{
+   -moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #17d2eb;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Rockwell;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#fb-auth, #share:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
+
+
+#lang, #bot{
+	display: inline-block;
+	height: 28px;
+	line-height: 28px;
+	border: 1px solid #17d2eb;
+	padding: 4px;
+	color: #17d2eb;
+}
+#lang, #bot{
+	font-family: Rockwell;
+	font-size: 100%;
+	margin: 0;
+	text: #FFFFFF;
+}
+#level2, #level1{
+   -moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #17d2eb;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Rockwell;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#level2, #level1:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
+ </script>
+      </style>
+      <script src="angular.min.js"></script>
+      <script src="angular-resource.min.js"></script>
+      <script src="jquery.min.js"></script>
+      <script src="angular-ace.js"></script>
+      <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+         angular.module('myApp', ['ngResource','ace']);
+         
+         function FirstController($scope, $resource){ 
+       
+           
+             $scope.supported_langugages = [
+               {language : 'java', urlName : 'java' },
+               {language : 'js', urlName : 'js' },
+             ];
+             
+             $scope.bots = [
+               {bot : 'dumb bot', urlName : 'dumb bot' },
+               {bot : 'smart bot', urlName : 'smart bot' },
+             ];
+         
+            $scope.bot = 'dumb bot';
+              
+             $scope.language = 'java';
+         
+                     //Some example code for each language.
+             $scope.d = {
+                          "js":{"solution":"a=1;\nb=7;",
+                               "tests":"assert_equal(1,a);\nassert_equal(2,b);"},
+                         
+                         "java":{"solution":"public String nextMove(){\n\treturn \"scissors\";\n}",
+                                 "tests":"String userChoice = nextMove(); assertEquals(1, userChoice); ",
+                         }
+                 },
+         
+         
+             $scope.status = "Ready"
+             //Load some good code
+             $scope.load_example_code = function(){
+               $scope.solution = $scope.d[$scope.language]["solution"];
+               $scope.tests = $scope.d[$scope.language]["tests"];
+             };
+         
+         
+             // For the loadbalancer version with fewer options. 
+             $scope.VerifierModel = $resource('http://ec2-54-251-193-188.ap-southeast-1.compute.amazonaws.com/:language',
+                                     {},{'get': {method: 'JSONP', isArray: false, params:{vcallback: 'JSON_CALLBACK'}}
+                                        }
+                                 );
+         var userWins = 0;
+         var computerWins = 0;
+         var userStreak = 0;
+             $scope.verify = function(){
+
+               data = {solution: $scope.solution, tests: $scope.tests}
+               jsonrequest = btoa(JSON.stringify(data));
+         
+               $scope.status = "Verifying"
+               $scope.VerifierModel.get({'language':$scope.language,
+                                         'jsonrequest':jsonrequest},
+                   
+                  
+                     function(response) { 
+                       $scope.result = response;
+                       var arr = response["results"];
+                       var userChoice = arr[0].received;
+                       $scope.status = "Ready";
+                       getWinner(userChoice);
+         
+                     });
+         
+                     
+                     function getWinner(userChoice){
+                          
+                          var computerChoice = ""; 
+                          
+                          if($scope.bot==="dumb bot"){
+                            computerChoice = "batman";
+                          }else {
+
+                            var computer = Math.random(); 
+                            if (computer < 0.11) {computerChoice = "rock";} 
+                            else if (computer < 0.22){computerChoice = "paper";} 
+                            else if (computer < 0.33) {computerChoice = "scissors";} 
+                            else if (computer < 0.44){computerChoice="lizard";} 
+                            else if (computer < 0.55){computerChoice="spock";} 
+                            else if (computer < 0.66){computerChoice="spiderman";}
+                            else if (computer < 0.77){computerChoice="batman";} 
+                            else if (computer < 0.88){computerChoice="wizard";} 
+                            else {computerChoice="glock";} 
+                          }
+                       var msg = "";
+               
+               // Rock, Paper, Scissors, Lizard, Spock
+         
+         var choices = ["rock","paper","scissors","lizard","spock","spiderman","batman","wizard","glock"]; // you could comment out the last two for the standard game.
+
+         var results = {
+         "scissorspaper" : "cuts",//Scissors cuts paper
+         "paperrock" : "covers", //Paper covers rock
+         "rocklizard" : "crushes", //Rock crushes lizard
+         "lizardspock" : "poisons", //Lizard poisons Spock
+         "spockwizard" : "zaps",
+         "wizardbatman" : "stuns",
+         "batmanspiderman" : "scares",
+         "spidermanglock" : "disarm",
+         "glockrock" : "breaks",
+         "rockwizard" : "interrupts",
+         "wizardpaper" : "burns",
+         "paperspock": "disproves",
+         "spockspiderman" : "befuddles",
+         "spidermanlizard" : "defeats",
+         "lizardbatman" : "confuses",
+         "batmanscissors" : "dismantles",
+         "scissorswizard" : "cuts",
+         "wizardlizard" : "transforms",
+         "lizardpaper" : "eats",//Lizard eats paper
+         "paperglock" : "jams",
+         "glockbatman" : "kills",
+         "batmanrock" : "explodes",
+         "rockscissors" : "crushes", //Rock crushes scissors
+         "scissorslizard" : "decapitates",//Scissors decapitates lizard
+         "lizardglock" : "is too small for",
+         "glockspock" : "shoots",
+         "spockrock" : "vaporizes", //Spock vaporizes rock
+         "rockspiderman" : "knocks out",
+         "spidermanpaper" : "rips",
+         "paperbatman" : "delays",
+         "batmanspock" : "hangs",
+         "spockscissors" : "smashes", //Spock smashes scissors
+         "scissorsspiderman" : "cuts",
+         "spidermanwizard" : "annoys",
+         "wizardglock" : "melts",
+         "glockscissors" : "dents"
+         };
+         // compare makes a key of the two choices and determines the winner
+         var computer = computerChoice;
+         var user = userChoice.toString().trim().replace("[","").replace("]",""); 
+         console.log("comp move = " + computer);
+         console.log("usermove="+user);
+         var winner = "";
+         var compare = function(user,computer){
+         if (user === computer){
+         msg = "The result is a tie!";
+         winner = "Draw";
+         }
+         else if (results[user+""+computer] !== undefined){ // user beats computer
+         userWins++;
+         msg = user+" "+results[user+""+computer]+" "+computer;
+         winner ="Congrats, you beat the bot!";
+         } else { //computer beats user
+         computerWins++;
+         userWins = 0;
+         msg = computer+" "+results[computer+""+user]+" "+user;
+         winner = "Try again, this bot is good (;";
+         }
+         };
+                  compare(user, computer);
+                  $scope.computerMove = computer;
+                  $scope.userMove = user;
+               $scope.winner = winner;
+                  $scope.outcome = msg;
+                  
+                  
+                  //get userscore
+                  var getScore = function(){
+                   console.log("Getting current score from Facebook");
+                  FB.api('/me/scores/', 'get', function(response) {
+                    console.log("Score retrieved from Facebook");  
+                    var arr = response["data"];
+                    userStreak = arr[0].score;  
+                    $scope.userStreak = userStreak;
+                   
+                    
+                    if (userStreak < userWins){
+                      FB.api('/me/scores/', 'post', { score: userWins }, function(response) {
+                            console.log("Score posted to Facebook");  
+                            console.log("response=" + JSON.stringify(response));
+                            });
+                            
+                          function postToFeed() {
+
+                                // calling the API ...
+                                var obj = {
+                                  method: 'feed',
+                                  redirect_uri: 'http://rosannechoo2011.github.com/relivethe90s',
+                                  link: 'http://apps.facebook.com/beattherpsbots/',
+                                  picture: 'http://img.scoop.it/psFzcwH_k9sQmfl592S8yDl72eJkfbmt4t8yenImKBVaiQDB_Rd1H6kmuBWtceBJ',
+                                  name: 'I got a new high score on Relive the 90s: Beat the Bots!',
+                                  caption: 'Streak: ' + userWins,
+                                  description: 'Think you can beat my score? Come try this game out!'
+                                };
+                        
+                                function callback(response) {
+                                   try {
+                                  document.getElementById('msg').innerHTML = "Post ID: " + response['post_id'];
+                                   } catch (err){
+                                      console.log("user did not share");
+                                   }
+                                }
+                        
+                                FB.ui(obj, callback);
+                              }
+                      postToFeed();
+
+                  } else {
+                    console.log("old streak higher");
+                  }
+                    
+                      });
+                       };
+                       getScore();
+
+                  
+                     }
+                     
+             };
+             
+             $scope.share = function(){
+                FB.ui({
+                    method: 'apprequests',
+                    message: "Come play Relive the 90s: Beat the Bots with me!"
+                });     
+
+             };
+         
+           }
+      </script>
+   </head>
+   <body ng-controller="FirstController">
+     <button id="home" onClick="window.location='./index.html';">Home</button>
+      <!--<input type="submit" value="Home" onclick="window.location='./index.html';" >-->
+      <br>
+      <div id="div-1">
+        <img src="http://dl.dropbox.com/u/40747801/rpslssbwg-bg.png" class="stretch" alt="" />
+    </div>
+    <br>
+      <font face="Rockwell" size=4px>
+      <div id = "fb-root"></div>
+      <div id = "user-info"></div>
+      </font>
+      <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p>
+      <script src = "./fblogin.js"></script>
+      
+      <div id="score" align="left"> <font face="Rockwell">&nbsp;&nbsp;Choose which language you want to code in:</font> 
+        <select id="lang" ng-model="language" ng:change="load_example_code()" ng-options="item.language as item.urlName for item in supported_langugages"></select>
+      <br>
+      <font face="Rockwell">&nbsp;&nbsp;Choose which bot you want to beat</font>
+      <select id="bot" ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>
+      <br>
+      <br>
+     <font face="Rockwell">    
+      &nbsp;&nbsp;Score: {{userScore}}<br>
+      &nbsp;&nbsp;Status: {{status}}<br>
+      <!--Result:{{result}}--> 
+      <br>
+     &nbsp;&nbsp; Winner: {{winner}}</br>
+     &nbsp;&nbsp; Outcome: {{outcome}}</br>
+      </font>
+     <!-- <font face="Rockwell">Choose which bot you want to beat</font>
+      <select ng-model="bot" ng-options="item.bot as item.urlName for item in bots"></select>-->
+      </div>
+      <br>&nbsp;&nbsp;
+      <div id="result" >
+      <table id="results">
+        <thead>
+            <tr>
+                <th scope="col">Computer</th>
+                <th scope="col">Player</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{computerMove}}</td>
+                <td>{{userMove}}</td>
+            </tr>
+        </tbody>
+    </table>
+    </div>
+      <br>
+      <br>
+      <div id="highscore" align="left">
+      <font face="Rockwell">
+      &nbsp;&nbsp;Your HighScore: {{userStreak}}
+      </font>
+      </div>
+      <br>
+      <div style="text-align:left"> <font face="Rockwell"> &nbsp;&nbsp;Player Solution:</font>
+
+    </div>
+    <div id="1" align="left">
+        <textarea id="text" ng-model="solution" name="solution" rows="8" cols="50"></textarea>
+    </div>
+    <div align="left">
+        &nbsp;&nbsp;<input type="submit" name="groovybtn1" class="groovybutton" value="Try and beat the bot!" title="" ng-click="verify()"/>
+    </div>
+    <br>
+   <button id="level1" onclick="window.location='./rps.html';">Level 1: Rock Paper Scissors!</button><br>
+   <button id="level2" onclick="window.location='./rpsls.html';">Level 2: Rock Paper Scissors Lizard Spock!</button>
+   
+    <div id="1a" align="center">
+    <span ng-init="load_example_code()"></span>
+     </div> 
+     <!--crazy egg-->
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0015/6206.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+
+   </body>
+</html>
