@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+   <head>
+       <meta property="fb:admins" content="671637679" />
+  <meta property="fb:app_id" content="136675969847991" /> 
+   <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    
+      ga('create', 'UA-39869790-1', 'github.com');
+      ga('send', 'pageview');
+    
+    </script>
+   
+      <title>RPS: Game On!</title>
+      <style type='text/css'>
+         /* MUST HAVE WIDTH/HEIGHT */
+ .ace-editor {
+ width:100%;
+ height:200px;
+ }
+ #contents {
+ width:50%;
+ height:50%;
+ position:absolute;
+ top:0;
+ }
+ #div-1 {
+     width: 100%;
+     height: 100%;
+     position: fixed;
+     left: 0px;
+     top: 0px;
+     z-index: -1;
+     /* Ensure div tag stays behind content; -999 might work, too. */
+ }
+ .stretch {
+     width:100%;
+     height:100%;
+ }
+ #fb-auth, #share{
+   -moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+   -webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #17d2eb;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Courier New;
+	font-size:18px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#fb-auth, #share:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
+#leaderb {
+	-moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Courier New;
+	font-size:17px;
+	font-weight:bold;
+	padding:3px 12px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#leaderb:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
+
+ #home {
+	-moz-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	-webkit-box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	box-shadow:inset 0px 0px 20px -6px #17d2eb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	display:inline-block;
+	color:#f5f5f5;
+	font-family:Courier New;
+	font-size:17px;
+	font-weight:bold;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:1px 1px 1px #17d2eb;
+}
+#home:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #17d2eb), color-stop(1, #17d2eb) );
+	background:-moz-linear-gradient( center top, #17d2eb 5%, #17d2eb 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#17d2eb', endColorstr='#17d2eb');
+	background-color:#17d2eb;
+}
+#home:active {
+	position:relative;
+	top:1px;
+}
+#leader{
+	border: 1px solid #17d2eb;
+	background-color:#17d2eb;
+	width: 40%;
+	border-radius: 6px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
+}
+#leader td, #leader th {
+	padding: 5px;
+	color: #17d2eb;
+}
+#leader thead {
+	font-family: 'Rockwell';
+	padding: .2em 0 .2em .5em;
+	text-align: center;
+	color: #FFFFFF;
+	background-color: #17d2eb;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#17d2eb), to(#17d2eb), color-stop(.6,#17d2eb));
+	background-image: -moz-linear-gradient(top, #17d2eb, #17d2eb, #17d2eb 90%);
+	border-bottom: solid 1px #999;
+}
+#leader th {
+	font-family: 'Rockwell';
+	font-size: 25px;
+	line-height: 20px;
+	font-style:bold ;
+	font-weight: bold;
+	color:#FFFFFF;
+	text-align: center;
+	text-shadow: white 1px 1px 1px;
+}
+#leader td {
+	line-height: 20px;
+	font-family: 'Rockwell';
+	font-size: 20px;
+	font-style:normal;
+	text-align:center;
+	color:#FFFFFF;
+	border-bottom: 1px solid #fff;
+	border-top: 1px solid #fff;
+}
+#leader td:hover {
+	background-color: #4000FF;
+}
+      </style>
+      <script src="angular.min.js"></script>
+      <script src="angular-resource.min.js"></script>
+      <script src="jquery.min.js"></script>
+      <script src="angular-ace.js"></script>
+      <script src="ace.js" type="text/javascript" charset="utf-8"></script>
+      <script language="javascript" type="text/javascript">
+         angular.module('myApp', ['ngResource','ace']);
+         
+         function FirstController($scope, $resource){ 
+
+                  //get leaderboard
+                  $scope.getLeaderboard = function(){
+                  //function getLeaderboard(){
+                   console.log("Getting current leaderboard from Facebook");
+                   var appId = '136675969847991';
+                   
+                  FB.api('/' + appId + '/scores', 'get', function(response) {
+                    console.log("all scores retrieved from Facebook");  
+                    console.log(JSON.stringify(response));
+                    
+                    var arr = response["data"];
+                    var board = "";
+                    
+                    arr.sort(function(a, b){
+                     return b.score-a.score;
+                    });
+                    
+                    for (var i = 0; i <  arr.length; i++){
+                      var user = arr[i].user;
+           
+                      var player = user.name;
+                      
+                      var score = arr[i].score;
+                      
+                      board = board + "<tr><td>" + player + "</td><td>" + score + "</td></tr>";
+                      
+                    }
+                    var leaderboardInfo = document.getElementById("leaderboard");
+                     leaderboardInfo.innerHTML = '<table id=\'leader\' align=\'center\' ><th>Player</th><th>Streak</th>'+ board + '</table>';
+                    
+                  });
+
+                    
+                  };
+                  
+                   $scope.share = function(){
+                      FB.ui({
+                          method: 'apprequests',
+                          message: "Come play Relive the 90s: Beat the Bots with me!"
+                      });     
+      
+                   };
+                  //getLeaderboard();
+         }
+           
+      </script>
+   </head>
+   <body ng-controller="FirstController">
+      <br>
+      <button id="home" onClick="window.location='./index.html';">Home</button>
+      <br>
+      <div id="div-1">
+        <img src="http://dl.dropbox.com/u/40747801/Antique_wallpapers_356.jpg" class="stretch" alt="" />
+    </div>
+    <br>
+      <font face="Rockwell" size=5px>
+      <div id = "fb-root"></div>
+      <div id = "user-info"></div>
+      </font>
+      <p><button id="fb-auth">Login</button><button id="share" ng-click="share()">Share this game with your friends!</button></p></p>
+      <script src = "./fblogin.js"></script>
+      <br>
+      <font face="Rockwell" size=5px>Leaderboard:</font><br>
+      <div id="leaderboard"><button id="leaderb" ng-click="getLeaderboard()">Get Leaderboard!</button></p></div>
+      
+      <!--crazy egg-->
+<script type="text/javascript">
+setTimeout(function(){var a=document.createElement("script");
+var b=document.getElementsByTagName("script")[0];
+a.src=document.location.protocol+"//dnn506yrbagrg.cloudfront.net/pages/scripts/0015/6056.js?"+Math.floor(new Date().getTime()/3600000);
+a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+</script>
+   </body>
+</html>
